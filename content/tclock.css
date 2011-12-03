@@ -1,0 +1,12 @@
+.tclock {
+	text-align: center;
+	color: #0ac;
+	margin-top: 12px;
+}
+
+.tclock-time {
+	font-size:38px;
+}
+.tclock-date {
+	font-size:18px;
+}

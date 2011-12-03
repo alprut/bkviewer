@@ -1,0 +1,4 @@
+component	{3faca288-53e5-4aa0-b656-b709ada875db}	components/AboutBookmarkViewer.js
+contract	@mozilla.org/network/protocol/about;1?what=bkviewer {3faca288-53e5-4aa0-b656-b709ada875db}
+
+content	bkviewer		content/

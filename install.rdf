@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>turpla@ihavenodomain.org</em:id>
+    <em:type>2</em:type>
+    <em:name>BookmarkViewer</em:name>
+    <em:version>0.0.1</em:version>
+    <em:localized>
+      <Description>
+        <em:locale>en-US</em:locale>
+        <em:creator>turpla</em:creator>
+        <em:name>BookmarkViewer</em:name>
+        <em:description>This shows the formatted bookmarks when you go 'about:bkviwer'</em:description>
+      </Description>
+    </em:localized>
+    <em:localized>
+      <Description>
+        <em:locale>ja-JP</em:locale>
+        <em:creator>turpla</em:creator>
+        <em:name>BookmarkViewer</em:name>
+        <em:description>URI「about:bkviewr」を開くとブックマークを整形して表示します</em:description>
+      </Description>
+    </em:localized>
+
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>8.0</em:minVersion>
+        <em:maxVersion>8.0.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+  </Description>
+</RDF>
