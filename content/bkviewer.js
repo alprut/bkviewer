@@ -7,6 +7,9 @@ return this.each(function() {
 	var bookmarks = bookmark_json();
 	add_view(t, bookmarks['children'], options);
 
+	function init(target, context) {
+	}
+
 	function add_category_view(json, target, context) {
 	}
 
@@ -40,12 +43,15 @@ return this.each(function() {
 		var category_view;
 		var defaults = {
 			children_key:      'children',
+			init:		   init,
 			add_category_view: add_category_view,
 			add_item_view:     add_item_view
 		};
 		var context = {};
 
 		var opts = $.extend({}, defaults, options);
+
+		opts.init(target, context);
 
 		for (i = 0; i < category_set.length; i++) {
 			category = category_set[i];
