@@ -1,0 +1,52 @@
+.sg-clearfix:after {
+	content:    ".";
+	clear:	    both;
+	display:    block;
+	height:	    0;
+	visibility: hidden;
+}
+
+.sg-clearfix {
+	display: inline-block;
+}
+
+* html .sg-clearfix {
+	height:1%;
+}
+
+.sg-clearfix {
+	display:block;
+}
+
+ul.bk-box {
+	width:         150pt;
+	padding-top:   0pt;
+	padding-left:  0pt;
+	padding-right: 0pt;
+	margin-left:   0pt;
+	margin-right:  0pt;
+	border-color:  #0ac;
+	border-width:  1pt;
+	border-style:  solid;
+	float:         left;
+}
+
+li.bk-category {
+	color:		  white;
+	background-color: #0ac;
+	text-align:       center;
+	list-style-type:  none;
+	margin-top:       0pt;
+	margin-bottom:    0pt;
+}
+
+li.bk-item {
+	list-style-type: none;
+	margin-top:      2pt;
+	margin-bottom:   2pt;
+	text-align:      center;
+}
+
+a.bk-item {
+	text-decoration: none;
+}
