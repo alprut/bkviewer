@@ -7,10 +7,10 @@ return this.each(function() {
 	var bookmarks = bookmark_json();
 	add_view(t, bookmarks['children'], options);
 
-	function add_category_view(json, target) {
+	function add_category_view(json, target, context) {
 	}
 
-	function add_item_view(json, category_view, target) {
+	function add_item_view(json, category_view, targelt, context) {
 	}
 
 /* Generic functions */
@@ -43,13 +43,15 @@ return this.each(function() {
 			add_category_view: add_category_view,
 			add_item_view:     add_item_view
 		};
+		var context = {};
 
 		var opts = $.extend({}, defaults, options);
 
 		for (i = 0; i < category_set.length; i++) {
 			category = category_set[i];
 			category_view = opts.add_category_view(category,
-							       target);
+							       target,
+							       context);
 
 			item_set = category[opts.children_key];
 			if (! item_set)
@@ -57,7 +59,7 @@ return this.each(function() {
 
 			for (j = 0; j < item_set.length; j++) {
 				opts.add_item_view(item_set[j], category_view,
-						   target);
+						   target, context);
 			}
 		}
 	}
@@ -69,7 +71,7 @@ return this.each(function() {
 	var t = $(this);
 
 	t.show_bookmarks({
-		add_category_view: function(json, target) {
+		add_category_view: function(json, target, context) {
 			var result, box = target;
 
 			if (json['type'] != "text/x-moz-place-container")
@@ -87,7 +89,7 @@ return this.each(function() {
 			return box;
 		},
 
-		add_item_view: function(json, category_view, target) {
+		add_item_view: function(json, category_view, target, context) {
 			var box = category_view;
 
 			if (json['type'] != "text/x-moz-place")
