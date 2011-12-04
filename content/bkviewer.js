@@ -189,7 +189,7 @@ return this.each(function() {
 		var box_width, item_width, items_num, margin;
 
 		box_width = $(box).width() - 1;
-		item_width = $(item).width();
+		item_width = $(item).width() + 2;
 
 		items_num = Math.floor(box_width / item_width);
 		margin = Math.floor((box_width % item_width) / items_num / 2);
