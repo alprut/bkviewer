@@ -44,7 +44,7 @@ li.bk-item {
 	list-style-type: none;
 	margin-top:      2pt;
 	margin-bottom:   2pt;
-	text-align:      center;
+	padding-left:    5pt;
 }
 
 a.bk-item {
