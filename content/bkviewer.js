@@ -86,7 +86,7 @@ return this.each(function() {
 			box = $('<ul />').addClass('bk-category')
 					 .appendTo(box);
 
-			$('<li />').html(json['title'])
+			$('<li />').text(json['title'])
 				   .addClass('bk-category')
 				   .appendTo(box);
 
@@ -104,7 +104,7 @@ return this.each(function() {
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);
 
-			$('<a />').html(json['title'])
+			$('<a />').text(json['title'])
 				  .attr({'href': json['uri']})
 				  .addClass('bk-item')
 				  .appendTo(box);
@@ -146,7 +146,7 @@ return this.each(function() {
 				return null;
 
 
-			box = $('<li />').html(json['title'])
+			box = $('<li />').text(json['title'])
 					 .addClass('bk-category')
 					 .appendTo(cur_box);
 
@@ -162,7 +162,7 @@ return this.each(function() {
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
 
-			$('<a />').html(json['title'])
+			$('<a />').text(json['title'])
 				  .attr({'href': json['uri']})
 				  .addClass('bk-item')
 				  .appendTo(box);
