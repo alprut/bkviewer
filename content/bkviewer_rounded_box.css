@@ -1,4 +1,4 @@
-.sg-clearfix:after {
+.es-clearfix:after {
 	content:    ".";
 	clear:	    both;
 	display:    block;
@@ -6,15 +6,15 @@
 	visibility: hidden;
 }
 
-.sg-clearfix {
+.es-clearfix {
 	display: inline-block;
 }
 
-* html .sg-clearfix {
+* html .es-clearfix {
 	height:1%;
 }
 
-.sg-clearfix {
+.es-clearfix {
 	display:block;
 }
 

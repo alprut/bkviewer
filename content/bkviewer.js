@@ -177,7 +177,7 @@ return this.each(function() {
 $.fn.equal_spacing = function(options) {
 return this.each(function() {
 
-	$(options.container).addClass('sg-clearfix')
+	$(options.container).addClass('es-clearfix')
 
 	$(window).resize(function() {
 				equal_spacing(options.container, options.item);
