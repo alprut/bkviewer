@@ -109,6 +109,8 @@ return this.each(function() {
 				  .addClass('bk-item')
 				  .appendTo(box);
 		}
+	}).equal_spacing({
+		item:      '.bk-box'
 	});
 })}} (jQuery));
 
@@ -167,6 +169,8 @@ return this.each(function() {
 
 			context['cur_box'] = add_box(target, cur_box, box);
 		}
+	}).equal_spacing({
+		item:      '.bk-box'
 	});
 
 	$('.bk-box').css({"height": 500});
@@ -176,24 +180,25 @@ return this.each(function() {
 (function($) {
 $.fn.equal_spacing = function(options) {
 return this.each(function() {
+	var t = $(this), item = $(options.item);
 
 	$(options.container).addClass('es-clearfix')
 
 	$(window).resize(function() {
-				equal_spacing(options.container, options.item);
+				equal_spacing(t, item);
 			 });
 
-	equal_spacing(options.container, options.item);
+	equal_spacing(t, item);
 
-	function equal_spacing(box, item) {
+	function equal_spacing(box, contents) {
 		var box_width, item_width, items_num, margin;
 
-		box_width = $(box).width() - 1;
-		item_width = $(item).width() + 2;
+		box_width = box.width() - 1;
+		item_width = contents.width() + 2;
 
 		items_num = Math.floor(box_width / item_width);
 		margin = Math.floor((box_width % item_width) / items_num / 2);
 
-		$(item).css({"margin-right": margin, "margin-left": margin});
+		contents.css({"margin-right": margin, "margin-left": margin});
 	}
 })}} (jQuery));
