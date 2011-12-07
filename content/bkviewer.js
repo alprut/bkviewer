@@ -119,12 +119,16 @@ $.fn.bkviewer_index = function(options) {
 return this.each(function() {
 	var t = $(this);
 
-	function add_box(target, cur_box, item) {
+	function add_box(target, cur_box, item, prev, prev2) {
 		var box;
 
 		if (cur_box.height() > 500) {
 			box = $('<ul />').addClass('bk-box')
 					 .appendTo(target);
+
+			if (prev && prev.hasClass('bk-category')) {
+				box.append(prev);
+			}
 
 			box.append(item);
 		} else {
@@ -150,7 +154,9 @@ return this.each(function() {
 					 .addClass('bk-category')
 					 .appendTo(cur_box);
 
-			context['cur_box'] = add_box(target, cur_box, box);
+			context['cur_box'] = add_box(target, cur_box, box,
+						     context['prev']);
+			context['prev'] = box;
 		},
 
 		add_item_view: function(json, category_view, target, context) {
@@ -167,7 +173,9 @@ return this.each(function() {
 				  .addClass('bk-item')
 				  .appendTo(box);
 
-			context['cur_box'] = add_box(target, cur_box, box);
+			context['cur_box'] = add_box(target, cur_box,
+						     box, context['prev']);
+			context['prev'] = box;
 		}
 	}).equal_spacing({
 		item:      '.bk-box'
