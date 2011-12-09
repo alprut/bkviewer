@@ -109,8 +109,10 @@ return this.each(function() {
 				  .addClass('bk-item')
 				  .appendTo(box);
 		}
-	}).equal_spacing({
-		item:      '.bk-box'
+	});
+
+	$('ul.bk-category').equal_spacing({
+		item: 'li.bk-item'
 	});
 })}} (jQuery));
 
@@ -190,7 +192,7 @@ $.fn.equal_spacing = function(options) {
 return this.each(function() {
 	var t = $(this), item = $(options.item);
 
-	$(options.container).addClass('es-clearfix')
+	t.addClass('es-clearfix');
 
 	$(window).resize(function() {
 				equal_spacing(t, item);
