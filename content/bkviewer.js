@@ -201,7 +201,7 @@ return this.each(function() {
 	function equal_spacing(box, contents) {
 		var box_width, item_width, items_num, margin;
 
-		box_width = box.width() - 1;
+		box_width = box.innerWidth();
 		item_width = contents.outerWidth();
 
 		items_num = Math.floor(box_width / item_width);
