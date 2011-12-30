@@ -5,7 +5,8 @@ $.fn.show_bookmarks = function(options) {
 return this.each(function() {
 	var t = $(this);
 	var bookmarks = bookmark_json();
-	add_view(t, bookmarks['children'], options);
+
+	add_view(t, bookmarks, options);
 
 	function init(target, context) {
 	}
@@ -56,8 +57,9 @@ return this.each(function() {
 		}
 	}
 
-	function add_view(target, category_set, options) {
+	function add_view(target, json, options) {
 		var category;
+		var category_set;
 		var i;
 		var defaults = {
 			children_key:      'children',
@@ -71,10 +73,13 @@ return this.each(function() {
 
 		opts.init(target, context);
 
+		category_set = json['children'];
 		for (i = 0; i < category_set.length; i++) {
 			category = category_set[i];
 			make_category_view(target, category, context, opts);
 		}
+
+		make_category_view(target, json, context, opts);
 	}
 })}} (jQuery));
 
@@ -107,6 +112,8 @@ return this.each(function() {
 
 			if (json['type'] != "text/x-moz-place")
 				return;
+			if (json['uri'].substr(0, 6) == "place:")
+				return null;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);
@@ -174,6 +181,8 @@ return this.each(function() {
 
 			if (json['type'] != "text/x-moz-place")
 				return;
+			if (json['uri'].substr(0, 6) == "place:")
+				return null;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
