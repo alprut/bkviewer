@@ -111,7 +111,8 @@ return this.each(function() {
 		}
 	});
 
-	$('ul.bk-category').equal_spacing({
+	$('ul.bk-category').addClass('es-clearfix');
+	$('ul.bk-item').equal_spacing({
 		item: 'li.bk-item'
 	});
 })}} (jQuery));
@@ -181,7 +182,8 @@ return this.each(function() {
 		}
 	}).equal_spacing({
 		item:      '.bk-box'
-	});
+
+	}).addClass('es-clearfix');
 
 	$('.bk-box').css({"height": 500});
 
@@ -191,8 +193,6 @@ return this.each(function() {
 $.fn.equal_spacing = function(options) {
 return this.each(function() {
 	var t = $(this), item = $(options.item);
-
-	t.addClass('es-clearfix');
 
 	$(window).resize(function() {
 				equal_spacing(t, item);
