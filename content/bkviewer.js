@@ -19,6 +19,26 @@ return this.each(function() {
 
 /* Generic functions */
 
+	function favicon_uri_for(uri) {
+		var result = "";
+
+		try {
+			var util = PlacesUtils.favicons;
+			var fav_data = util.getFaviconForPage(
+							PlacesUtils._uri(uri));
+			var mime = {};
+			var len = {};
+			var icon = util.getFaviconData(fav_data, mime, len);
+			result = "data:" + mime.value + ";base64," +
+				 btoa(String.fromCharCode.apply(null, icon));
+		} catch(e) {
+			result =
+			      "chrome://mozapps/skin/places/defaultFavicon.png";
+		}
+
+		return result;
+	}
+
 	function bookmark_json() {
 		var id = PlacesUtils.bookmarksMenuFolderId,
 		parentNode = PlacesUtils.getFolderContents(id).root,
@@ -42,6 +62,7 @@ return this.each(function() {
 		var item_set;
 		var i;
 		var category_view;
+		var item;
 
 		category_view = opts.add_category_view(category,
 						       target,
@@ -52,7 +73,10 @@ return this.each(function() {
 			return;
 
 		for (i = 0; i < item_set.length; i++) {
-			opts.add_item_view(item_set[i], category_view,
+			item = item_set[i];
+			item['favicon'] = favicon_uri_for(item['uri']);
+
+			opts.add_item_view(item, category_view,
 					   target, context);
 		}
 	}
@@ -108,7 +132,7 @@ return this.each(function() {
 		},
 
 		add_item_view: function(json, category_view, target, context) {
-			var box = category_view;
+			var box = category_view, atag;
 
 			if (json['type'] != "text/x-moz-place")
 				return;
@@ -118,10 +142,15 @@ return this.each(function() {
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);
 
-			$('<a />').text(json['title'])
+			atag = $('<a />').text(json['title'])
 				  .attr({'href': json['uri']})
 				  .addClass('bk-item')
 				  .appendTo(box);
+
+			$('<img />').addClass('favicon')
+				    .attr({'src': json['favicon']})
+				    .prependTo(atag);
+
 		}
 	});
 
@@ -177,7 +206,7 @@ return this.each(function() {
 		},
 
 		add_item_view: function(json, category_view, target, context) {
-			var box, cur_box = context['cur_box'];
+			var box, cur_box = context['cur_box'], atag;
 
 			if (json['type'] != "text/x-moz-place")
 				return;
@@ -187,10 +216,14 @@ return this.each(function() {
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
 
-			$('<a />').text(json['title'])
+			atag = $('<a />').text(json['title'])
 				  .attr({'href': json['uri']})
 				  .addClass('bk-item')
 				  .appendTo(box);
+
+			$('<img />').addClass('favicon')
+				    .attr({'src': json['favicon']})
+				    .prependTo(atag);
 
 			context['cur_box'] = add_box(target, cur_box,
 						     box, context['prev']);
