@@ -37,10 +37,28 @@ return this.each(function() {
 		return eval("(" + writer.value + ")");
 	}
 
-	function add_view(target, category_set, options) {
-		var item_set, category;
-		var i,j;
+	function make_category_view(target, category, context, opts) {
+		var item_set;
+		var i;
 		var category_view;
+
+		category_view = opts.add_category_view(category,
+						       target,
+						       context);
+
+		item_set = category[opts.children_key];
+		if (! item_set)
+			return;
+
+		for (i = 0; i < item_set.length; i++) {
+			opts.add_item_view(item_set[i], category_view,
+					   target, context);
+		}
+	}
+
+	function add_view(target, category_set, options) {
+		var category;
+		var i;
 		var defaults = {
 			children_key:      'children',
 			init:		   init,
@@ -55,18 +73,7 @@ return this.each(function() {
 
 		for (i = 0; i < category_set.length; i++) {
 			category = category_set[i];
-			category_view = opts.add_category_view(category,
-							       target,
-							       context);
-
-			item_set = category[opts.children_key];
-			if (! item_set)
-				continue;
-
-			for (j = 0; j < item_set.length; j++) {
-				opts.add_item_view(item_set[j], category_view,
-						   target, context);
-			}
+			make_category_view(target, category, context, opts);
 		}
 	}
 })}} (jQuery));
