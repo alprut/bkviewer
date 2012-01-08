@@ -160,12 +160,14 @@ return this.each(function() {
 (function($) {
 $.fn.bkviewer = function(options) {
 return this.each(function() {
-	$(this).bkviewer_index();
+	$(this).bkviewer_rounded_box();
 })}} (jQuery));
 
 (function($) {
-	var stylist = "chrome://bkviewer/content/bkviewer_stylist_index.js";
-	var formatter = "chrome://bkviewer/content/bkviewer_index.js";
+	var name = "rounded_box";
+	var base_uri = "chrome://bkviewer/content/";
+	var stylist = base_uri + "bkviewer_stylist_" + name + ".js";
+	var formatter = base_uri + "bkviewer_" + name + ".js";
 
 	$('<script />').attr({"type": "text/javascript",
 			      "src":  stylist })
