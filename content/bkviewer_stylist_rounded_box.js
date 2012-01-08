@@ -54,8 +54,8 @@
 			"width":           "150pt",
 			"list-style-type": "none",
 			"float":           "left",
-			"margin-top":      "5pt",
-			"margin-bottom":   "5pt",
+			"margin-top":      "2pt",
+			"margin-bottom":   "2pt",
 			"text-align":      "center",
 		},
 		
