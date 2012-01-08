@@ -141,9 +141,16 @@ return this.each(function() {
 })}} (jQuery));
 
 (function($) {
+$.fn.bkviewer = function(options) {
+return this.each(function() {
+	$(this).bkviewer_index();
+})}} (jQuery));
+
+(function($) {
 	var formatter = "chrome://bkviewer/content/bkviewer_index.js";
 
 	$('<script />').attr({"type": "text/javascript",
 			      "src":  formatter })
 		       .appendTo('head');
 } (jQuery));
+
