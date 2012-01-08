@@ -141,14 +141,35 @@ return this.each(function() {
 })}} (jQuery));
 
 (function($) {
+$.fn.stylist = function(json) {
+return this.each(function() {
+	var style = "";
+
+	for (var i in json) {
+		style += i + " {\n";
+		for (var j in json[i]) {
+			style += "\t" + j + ":" + json[i][j] + ";\n";
+		}
+		style += "}\n";
+	}
+
+        $(this).html("<!--" + style + "-->");
+
+})}} (jQuery));
+
+(function($) {
 $.fn.bkviewer = function(options) {
 return this.each(function() {
 	$(this).bkviewer_index();
 })}} (jQuery));
 
 (function($) {
+	var stylist = "chrome://bkviewer/content/bkviewer_stylist_index.js";
 	var formatter = "chrome://bkviewer/content/bkviewer_index.js";
 
+	$('<script />').attr({"type": "text/javascript",
+			      "src":  stylist })
+		       .appendTo('head');
 	$('<script />').attr({"type": "text/javascript",
 			      "src":  formatter })
 		       .appendTo('head');
