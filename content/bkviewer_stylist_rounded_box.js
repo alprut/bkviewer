@@ -34,15 +34,15 @@
 		},
 		
 		"ul.bk-category": {
-			"padding-top":   "0pt",
-			"padding-left":  "0pt",
-			"padding-right": "0pt",
-			"margin-left":   "0pt",
-			"margin-right":  "0pt",
+			"padding-top":   "0px",
+			"padding-left":  "0px",
+			"padding-right": "0px",
+			"margin-left":   "0px",
+			"margin-right":  "0px",
 			"border-color":  frame_color,
-			"border-width":  "1pt",
+			"border-width":  "1px",
 			"border-style":  "solid",
-			"border-radius": "10pt",
+			"border-radius": "10px",
 		},
 		
 		"li.bk-category": {
@@ -52,24 +52,24 @@
 			"font-weight":      "bold",
 			"list-style-type":  "none",
 			"clear":            "left",
-			"margin-top":       "0pt",
-			"margin-bottom":    "5pt",
-			"border-radius":    "8pt 8pt 0pt 0pt",
+			"margin-top":       "0px",
+			"margin-bottom":    "5px",
+			"border-radius":    "8px 8px 0px 0px",
 		},
 		
 		"ul.bk-item": {
-			"padding-left":  "0pt",
-			"padding-right": "0pt",
-			"margin-left":   "0pt",
-			"margin-right":  "0pt",
+			"padding-left":  "0px",
+			"padding-right": "0px",
+			"margin-left":   "0px",
+			"margin-right":  "0px",
 		},
 		
 		"li.bk-item": {
-			"width":           "150pt",
+			"width":           "210px",
 			"list-style-type": "none",
 			"float":           "left",
-			"margin-top":      "2pt",
-			"margin-bottom":   "2pt",
+			"margin-top":      "2px",
+			"margin-bottom":   "2px",
 			"text-align":      "center",
 		},
 		
