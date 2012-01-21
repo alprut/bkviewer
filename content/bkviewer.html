@@ -30,9 +30,10 @@ $(function(){
 	var prefs = nsPreferences;
 	var key_base = "extensions.bkviewer.";
 	var clock = prefs.copyUnicharPref(key_base + "clock", "off");
-	var text_color = prefs.copyUnicharPref(key_base + "text_color", "#0ac");
+	var frame_color = prefs.copyUnicharPref(key_base + "frame_color",
+					        "#0ac");
 	if (clock == "on") {
-		$('.tclock').tclock({"color": text_color });
+		$('.tclock').tclock({"color": frame_color });
 	} else {
 		$('.tclock').remove();
 	}
