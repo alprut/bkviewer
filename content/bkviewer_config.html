@@ -42,12 +42,39 @@ img.checked {
 .clearfix {
 	display:block;
 }
+
+#color_table {
+	width: 8em;
+	float: left;
+	margin-left: 0px;
+}
+
+.color {
+	width: 2em;
+	height: 2ex;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.color_conf {
+	margin-left: 5ex;
+}
+
+#color_picker {
+	width: 200px;
+	float: left;
+	margin-left: 5ex;
+}
 -->
 </style>
 <script type="text/javascript"
 	src="chrome://bkviewer/content/jquery-1.7.1.min.js"></script>
 <script type="text/javascript"
 	src="chrome://global/content/nsUserSettings.js"></script>
+<script type="text/javascript"
+	src="chrome://bkviewer/content/jquery.colors.pickers.hslLite.bundle.js"></script>
+
 <script type="text/javascript">
 <!--
 $(function(){
@@ -83,6 +110,58 @@ $(function(){
 	}
 });
 
+$(function() {
+	var height, margin;
+	var picker = $('#color_picker');
+	var target = $('#color_table .checked');
+	var prefs = nsPreferences;
+	var key_base = "extensions.bkviewer.";
+	var defs = { "frame_color": "rgb(0,170,204)",
+		     "bg_color":    "rgb(255,255,255)",
+		     "text_color":  "rgb(0,0,0)" };
+	var value;
+	var id;
+
+	id = target.attr("id");
+	value = prefs.copyUnicharPref(key_base + id, defs[id]);
+
+	picker.hslLiteColorPicker({
+		'color': $.colors(value),
+
+		'onChange': function(color) {
+			target.css("background", color.toString());
+		},
+
+		'onEndChange': function(color) {
+			prefs.setUnicharPref(key_base + target.attr("id"),
+					     color.toString());
+		}
+	});
+
+	height = picker.height();
+	margin = (picker.parent().height() - picker.height()) / 2;
+	picker.css("margin-top", margin);
+
+	$('.color').each(function() {
+		id = $(this).attr("id");
+		value = prefs.copyUnicharPref(key_base + id, defs[id]);
+		$(this).css("background", value);
+	}).click(function() {
+		target.removeClass("checked")
+		      .css("box-shadow", "");
+
+		target = $(this);
+		target.addClass("checked")
+		      .css("box-shadow",
+			   "0px 0px 2px 2px rgba(0, 0, 0, 0.5)");
+		id = target.attr("id");
+		value = prefs.copyUnicharPref(key_base + id, defs[id]);
+		picker.hslLiteColorPicker({ 'color': $.colors(value) });
+	});
+
+	target.css("box-shadow", "0px 0px 2px 2px rgba(0, 0, 0, 0.5)");
+});
+
 -->
 </script>
 
@@ -90,5 +169,30 @@ $(function(){
 <body>
 <h2>Theme</h2>
 <ul class="theme_list clearfix"></ul>
+
+<h2>Color</h2>
+<div class="clearfix color_conf">
+<table id="color_table">
+	<tr>
+		<td>Frame</td>
+		<td>
+			<div id="frame_color" class="color checked"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>Background</td>
+		<td>
+			<div id="bg_color" class="color"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>Text</td>
+		<td>
+			<div id="text_color" class="color"></div>
+		</td>
+	</tr>
+</table>
+<div id="color_picker"></div>
+</div>
 </body>
 </html>
