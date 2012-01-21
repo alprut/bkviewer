@@ -36,6 +36,7 @@
 			"color":	    "white",
 			"background-color": "#0ac",
 			"text-align":       "center",
+			"font-weight":      "bold",
 			"list-style-type":  "none",
 			"clear":            "left",
 			"margin-top":       "0pt",

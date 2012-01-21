@@ -52,6 +52,7 @@
 			"color":	    bg_color,
 			"background-color": frame_color,
 			"text-align":       "center",
+			"font-weight":      "bold",
 			"list-style-type":  "none",
 			"margin-top":       "0pt",
 			"margin-bottom":    "0pt",
