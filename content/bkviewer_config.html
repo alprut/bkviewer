@@ -183,6 +183,20 @@ $(function() {
 		prefs.setIntPref(key, columns);
 	});
 });
+
+$(function() {
+	var prefs = nsPreferences;
+	var key = "extensions.bkviewer.clock";
+	var value = prefs.copyUnicharPref(key, "off");
+	var radio_button = $("input[name=clock]");
+
+	radio_button.val([value])
+		    .change(function() {
+		var new_value = $("input[name=clock]:checked").val();
+		prefs.setUnicharPref(key, new_value);
+	});
+});
+
 -->
 </script>
 
@@ -220,6 +234,12 @@ $(function() {
 <p>
 	<select id="columns" name="columns"></select> colums
 	in the maximum window
+</p>
+
+<h2>Clock</h2>
+<p>
+	<input type="radio" name="clock" value="on">Show
+	<input type="radio" name="clock" value="off">Don't show
 </p>
 </body>
 </html>
