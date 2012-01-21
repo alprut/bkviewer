@@ -1010,10 +1010,7 @@ function initiate(){
 
   var a, aMax, b, bMax,
     style=[
-      /// wrapper
-      ['.hslLiteColorPicker',
-        ['display','inline-block']
-      ], /// scale
+      /// scale
       ['.hslLiteColorPicker>div.scale',
         ['height','1.5em'],
         ['border','1px solid #000'],
