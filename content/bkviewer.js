@@ -120,23 +120,30 @@ return this.each(function() {
 
 	function equal_spacing(box, contents) {
 		var box_width, item_width, items_num, margin, first_margin;
+		var is_little = false;
 
 		box_width = box.innerWidth();
 		item_width = contents.outerWidth();
 
 		items_num = Math.floor(box_width / item_width);
-		if (items_num > contents.size())
+		if (items_num > contents.size()) {
 			items_num = contents.size();
+			is_little = ture;
+		}
 
 		margin = Math.floor((box_width % item_width) / items_num / 2);
-		first_margin = items_num * (2 * margin + item_width);
-		first_margin = box_width - first_margin;
-		first_margin = Math.floor(margin + first_margin / 2);
-
 		contents.css({"margin-right": margin, "margin-left": margin})
-		contents.first()
-			.css({"margin-right": margin,
-			      "margin-left": first_margin});
+
+		if (is_little) {
+			/* Don't do equal spacing it there is not enough
+			   items */
+			first_margin = items_num * (2 * margin + item_width);
+			first_margin = box_width - first_margin;
+			first_margin = Math.floor(margin + first_margin / 2);
+			contents.first()
+				.css({"margin-right": margin,
+				      "margin-left": first_margin});
+		}
 	}
 })}} (jQuery));
 
