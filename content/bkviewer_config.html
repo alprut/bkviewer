@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bookmark Viewer</title>
+<style type="text/css">
+<!--
+ul.theme_list {
+	padding-left: 5ex;
+}
+li.theme {
+	float:		 left;
+	list-style-type: none;
+	text-align:	 center;
+	margin-right:	 15px;
+	margin-top:	 10px;
+}
+img {
+	margin-top: 0.5ex;
+	box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
+}
+img.checked {
+	box-shadow: 0px 0px 3px 3px #0ac;
+}
+
+.clearfix:after {
+	content:    ".";
+	clear:      both;
+	display:    block;
+	height:     0;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height:1%;
+}
+
+.clearfix {
+	display:block;
+}
+-->
+</style>
+<script type="text/javascript"
+	src="chrome://bkviewer/content/jquery-1.7.1.min.js"></script>
+<script type="text/javascript"
+	src="chrome://global/content/nsUserSettings.js"></script>
+<script type="text/javascript">
+<!--
+$(function(){
+	var prefs = nsPreferences;
+	var key = "extensions.bkviewer.theme";
+	var cur_theme = prefs.copyUnicharPref(key, "index");
+	var themes = { "index":		{ "name": "Index" },
+		       "rounded_box":	{ "name": "Rounded Box" }
+		     };
+	var base ="chrome://bkviewer/content/bkviewer_";
+	var theme_list = $('.theme_list');
+
+	for (var id in themes) {
+		var theme = themes[id];
+		tag = $('<li />').addClass("theme")
+				 .appendTo(theme_list);
+		tag = $('<div />').addClass("theme")
+				  .appendTo(tag);
+		tag.text(theme['name']);
+		$('<br />').appendTo(tag);
+
+		tag = $('<img />').attr({ "id": id,
+					  "src": base + id + ".png"})
+				  .appendTo(tag);
+		tag.click(function() {
+			prefs.setUnicharPref(key, $(this).attr("id"));
+			theme_list.find(".checked").removeClass("checked");
+			$(this).addClass("checked");
+		});
+		if (id == cur_theme) {
+			tag.addClass("checked");
+		}
+	}
+});
+
+-->
+</script>
+
+</head>
+<body>
+<h2>Theme</h2>
+<ul class="theme_list clearfix"></ul>
+</body>
+</html>
