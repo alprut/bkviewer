@@ -66,6 +66,9 @@ img.checked {
 	float: left;
 	margin-left: 5ex;
 }
+p {
+	margin-left: 5ex;
+}
 -->
 </style>
 <script type="text/javascript"
@@ -162,6 +165,24 @@ $(function() {
 	target.css("box-shadow", "0px 0px 2px 2px rgba(0, 0, 0, 0.5)");
 });
 
+$(function() {
+	var selector = $("#columns");
+	var columns;
+	var prefs = nsPreferences;
+	var key = "extensions.bkviewer.columns";
+	for (var i = 1; i <= 20; i++) {
+		$('<option />').attr("value", String(i))
+			       .text(String(i))
+			       .appendTo(selector);
+	}
+
+	columns = prefs.getIntPref(key, 6);
+	selector.val(String(columns));
+	selector.change(function() {
+		columns = parseInt(selector.val());
+		prefs.setIntPref(key, columns);
+	});
+});
 -->
 </script>
 
@@ -194,5 +215,11 @@ $(function() {
 </table>
 <div id="color_picker"></div>
 </div>
+
+<h2>Size</h2>
+<p>
+	<select id="columns" name="columns"></select> colums
+	in the maximum window
+</p>
 </body>
 </html>
