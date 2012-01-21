@@ -158,12 +158,6 @@ return this.each(function() {
 })}} (jQuery));
 
 (function($) {
-$.fn.bkviewer = function(options) {
-return this.each(function() {
-	$(this).bkviewer_rounded_box();
-})}} (jQuery));
-
-(function($) {
 	var name = "rounded_box";
 	var base_uri = "chrome://bkviewer/content/";
 	var stylist = base_uri + "bkviewer_stylist_" + name + ".js";
