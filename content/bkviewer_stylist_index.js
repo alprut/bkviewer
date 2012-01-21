@@ -1,5 +1,20 @@
 (function($) {
-	var json = {
+	var json;
+
+	var prefs = nsPreferences;
+	var key_base = "extensions.bkviewer.";
+	var frame_color = prefs.copyUnicharPref(key_base + "frame_color",
+						"#0ac");
+	var bg_color =    prefs.copyUnicharPref(key_base + "bg_color",
+						"#fff");
+	var text_color =  prefs.copyUnicharPref(key_base + "text_color",
+						"#00f");
+
+	json = {
+		"body": {
+			"background-color":	bg_color,
+			"color":		text_color,
+		},
 		".es-clearfix:after": {
 			"content":	"\".\"",
 			"clear":	"both",
@@ -27,15 +42,15 @@
 			"padding-right": "0pt",
 			"margin-left":   "0pt",
 			"margin-right":  "0pt",
-			"border-color":  "#0ac",
+			"border-color":  frame_color,
 			"border-width":  "1pt",
 			"border-style":  "solid",
 			"float":         "left",
 		},
 		
 		"li.bk-category": {
-			"color":	    "white",
-			"background-color": "#0ac",
+			"color":	    bg_color,
+			"background-color": frame_color,
 			"text-align":       "center",
 			"list-style-type":  "none",
 			"margin-top":       "0pt",
@@ -51,6 +66,7 @@
 		
 		"a.bk-item": {
 			"text-decoration": "none",
+			"color":	   text_color,
 		},
 		
 		"img.favicon": {
