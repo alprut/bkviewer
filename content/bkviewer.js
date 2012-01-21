@@ -158,10 +158,12 @@ return this.each(function() {
 })}} (jQuery));
 
 (function($) {
-	var name = "rounded_box";
+	var prefs = nsPreferences;
+	var key = "extensions.bkviewer.theme";
+	var theme = prefs.copyUnicharPref(key, "rounded_box");
 	var base_uri = "chrome://bkviewer/content/";
-	var stylist = base_uri + "bkviewer_stylist_" + name + ".js";
-	var formatter = base_uri + "bkviewer_" + name + ".js";
+	var stylist = base_uri + "bkviewer_stylist_" + theme + ".js";
+	var formatter = base_uri + "bkviewer_" + theme + ".js";
 
 	$('<script />').attr({"type": "text/javascript",
 			      "src":  stylist })
