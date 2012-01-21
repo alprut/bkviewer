@@ -15,7 +15,7 @@ li.theme {
 	margin-right:	 15px;
 	margin-top:	 10px;
 }
-img {
+img.theme {
 	margin-top: 0.5ex;
 	box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.5);
 }
@@ -49,12 +49,15 @@ img.checked {
 	margin-left: 0px;
 }
 
-.color {
+.color_box {
 	width: 2em;
 	height: 2ex;
 	border-color: black;
 	border-style: solid;
 	border-width: 1px;
+}
+#color_table img {
+	display: block;
 }
 
 .color_conf {
@@ -101,6 +104,7 @@ $(function(){
 
 		tag = $('<img />').attr({ "id": id,
 					  "src": base + id + ".png"})
+				  .addClass("theme")
 				  .appendTo(tag);
 		tag.click(function() {
 			prefs.setUnicharPref(key, $(this).attr("id"));
@@ -116,7 +120,7 @@ $(function(){
 $(function() {
 	var height, margin;
 	var picker = $('#color_picker');
-	var target = $('#color_table .checked');
+	var target = $('#frame_color');
 	var prefs = nsPreferences;
 	var key_base = "extensions.bkviewer.";
 	var defs = { "frame_color": "rgb(0,170,204)",
@@ -145,24 +149,22 @@ $(function() {
 	margin = (picker.parent().height() - picker.height()) / 2;
 	picker.css("margin-top", margin);
 
-	$('.color').each(function() {
+	$('.color_box').each(function() {
 		id = $(this).attr("id");
 		value = prefs.copyUnicharPref(key_base + id, defs[id]);
 		$(this).css("background", value);
 	}).click(function() {
-		target.removeClass("checked")
-		      .css("box-shadow", "");
+		target.parent().parent().find("img").remove();
 
 		target = $(this);
-		target.addClass("checked")
-		      .css("box-shadow",
-			   "0px 0px 2px 2px rgba(0, 0, 0, 0.5)");
+		$("<img />").attr("src",
+				  "chrome://bkviewer/content/triangle.png")
+			    .appendTo(target.parent().parent().find(".arrow"));
+
 		id = target.attr("id");
 		value = prefs.copyUnicharPref(key_base + id, defs[id]);
 		picker.hslLiteColorPicker({ 'color': $.colors(value) });
 	});
-
-	target.css("box-shadow", "0px 0px 2px 2px rgba(0, 0, 0, 0.5)");
 });
 
 $(function() {
@@ -211,19 +213,26 @@ $(function() {
 	<tr>
 		<td>Frame</td>
 		<td>
-			<div id="frame_color" class="color checked"></div>
+			<div id="frame_color" class="color_box"></div>
+		</td>
+		<td class="arrow">
+			<img src="chrome://bkviewer/content/triangle.png"></img>
 		</td>
 	</tr>
 	<tr>
 		<td>Background</td>
 		<td>
-			<div id="bg_color" class="color"></div>
+			<div id="bg_color" class="color_box"></div>
+		</td>
+		<td class="arrow">
 		</td>
 	</tr>
 	<tr>
 		<td>Text</td>
 		<td>
-			<div id="text_color" class="color"></div>
+			<div id="text_color" class="color_box"></div>
+		</td>
+		<td class="arrow">
 		</td>
 	</tr>
 </table>
