@@ -4,7 +4,7 @@
  * author: Yasuyuki Kozakai
  * last update: Sep 4 2011
  * web: nothing
- * Free to use under the BSD license.
+ * Free to use under the MIT license.
  * ========================================================== */  
 (function($) {
 $.fn.tclock = function(options) {
