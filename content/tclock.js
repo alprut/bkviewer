@@ -27,11 +27,11 @@ return this.each(function(){
 		var minutes = now.getMinutes();
 		var seconds = now.getSeconds();
 
-		var month_str = new Array(
-			"Jan", "Feb", "Mar", "Apr", "May", "Jun",
-			"Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
-		var week_str = new Array(
-			"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
+		var month_str = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+
+		var week_str = [ "Sun", "Mon", "Tue", "Wed",
+				 "Thu", "Fri", "Sat" ];
 
 		var time_str = twoDigits(hours) + ":" +
 			       twoDigits(minutes) + ":" +
