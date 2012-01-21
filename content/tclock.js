@@ -1,11 +1,10 @@
-/* ==========================================================
- * Tclock
- * date: Sep 4 2011
- * author: Yasuyuki Kozakai
- * last update: Sep 4 2011
- * web: nothing
- * Free to use under the MIT license.
- * ========================================================== */  
+/* ===========================================================================
+ * Tclock: Tiny digital clock
+ *
+ * Author: Yasuyuki Kozakai
+ * License: MIT license
+ * ===========================================================================
+ */
 (function($) {
 $.fn.tclock = function(options) {
 return this.each(function(){
