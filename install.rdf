@@ -6,6 +6,7 @@
     <em:type>2</em:type>
     <em:name>BookmarkViewer</em:name>
     <em:version>1.2.1</em:version>
+    <em:optionsURL>chrome://bkviewer/content/bkviewer_config.html</em:optionsURL>
     <em:localized>
       <Description>
         <em:locale>en-US</em:locale>
