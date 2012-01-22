@@ -77,9 +77,9 @@ return this.each(function() {
 			item = item_set[i];
 
 			if (item['type'] != "text/x-moz-place")
-				return;
+				continue;
 			if (item['uri'].substr(0, 6) == "place:")
-				return;
+				continue;
 
 			item['favicon'] = favicon_uri_for(item['uri']);
 
