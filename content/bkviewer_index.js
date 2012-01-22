@@ -3,7 +3,7 @@ $.fn.bkviewer = function(options) {
 return this.each(function() {
 	var t = $(this);
 
-	function add_box(target, cur_box, item, prev, prev2) {
+	function add_box(target, cur_box, item, prev) {
 		var box;
 
 		if (cur_box.height() > 500) {
