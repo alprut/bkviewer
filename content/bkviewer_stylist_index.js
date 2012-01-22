@@ -10,6 +10,15 @@
 	var text_color =  prefs.copyUnicharPref(key_base + "text_color",
 						"#00f");
 
+	/* 2 is 2 * (border width), 15 is the width of scroll bar,
+	   1 is because the border width is over 1px and it is
+	   at most 1.333...px if the page is zoomed in.
+	   The last 10px is space between columns. */
+	var columns =  prefs.getIntPref(key_base + "columns", 6);
+	var spaces = $(window).width() - $('body').innerWidth();
+	var availWidth = screen.availWidth - spaces - 15;
+	var column_width = Math.floor(availWidth / columns) - 2 - 1 - 10;
+
 	json = {
 		"body": {
 			"background-color":	bg_color,
@@ -36,7 +45,7 @@
 		},
 		
 		"ul.bk-box": {
-			"width":         "210px",
+			"width":         String(column_width) + "px",
 			"padding-top":   "0pt",
 			"padding-left":  "0pt",
 			"padding-right": "0pt",
