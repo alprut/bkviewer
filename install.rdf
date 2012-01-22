@@ -11,7 +11,7 @@
         <em:locale>en-US</em:locale>
         <em:creator>turpla</em:creator>
         <em:name>BookmarkViewer</em:name>
-        <em:description>This shows the formatted bookmarks when you go 'about:bkviwer'</em:description>
+        <em:description>This shows the formatted bookmarks when you go 'about:bkviewer'</em:description>
       </Description>
     </em:localized>
     <em:localized>
@@ -19,7 +19,7 @@
         <em:locale>ja-JP</em:locale>
         <em:creator>turpla</em:creator>
         <em:name>BookmarkViewer</em:name>
-        <em:description>URI「about:bkviewr」を開くとブックマークを整形して表示します</em:description>
+        <em:description>URI「about:bkviewer」を開くとブックマークを整形して表示します</em:description>
       </Description>
     </em:localized>
 
