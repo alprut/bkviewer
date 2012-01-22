@@ -2,14 +2,14 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
-    <em:id>turpla@ihavenodomain.org</em:id>
+    <em:id>yasuyuki.kozakai@ihavenodomain.org</em:id>
     <em:type>2</em:type>
     <em:name>BookmarkViewer</em:name>
     <em:version>0.0.1</em:version>
     <em:localized>
       <Description>
         <em:locale>en-US</em:locale>
-        <em:creator>turpla</em:creator>
+        <em:creator>Yasuyuki KOZAKAI</em:creator>
         <em:name>BookmarkViewer</em:name>
         <em:description>This shows the formatted bookmarks when you go 'about:bkviewer'</em:description>
       </Description>
@@ -17,7 +17,7 @@
     <em:localized>
       <Description>
         <em:locale>ja-JP</em:locale>
-        <em:creator>turpla</em:creator>
+        <em:creator>Yasuyuki KOZAKAI</em:creator>
         <em:name>BookmarkViewer</em:name>
         <em:description>URI「about:bkviewer」を開くとブックマークを整形して表示します</em:description>
       </Description>
