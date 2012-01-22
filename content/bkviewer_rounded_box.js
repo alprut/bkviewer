@@ -34,7 +34,6 @@ return this.each(function() {
 			$('<img />').addClass('favicon')
 				    .attr({'src': json['favicon']})
 				    .prependTo(atag);
-
 		}
 	});
 
