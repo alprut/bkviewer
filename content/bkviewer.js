@@ -14,7 +14,7 @@ return this.each(function() {
 	function add_category_view(json, target, context) {
 	}
 
-	function add_item_view(json, category_view, targelt, context) {
+	function add_item_view(json, target, context) {
 	}
 
 /* Generic functions */
@@ -67,9 +67,7 @@ return this.each(function() {
 		if (category['type'] != "text/x-moz-place-container")
 			return;
 
-		category_view = opts.add_category_view(category,
-						       target,
-						       context);
+		opts.add_category_view(category, target, context);
 
 		item_set = category[opts.children_key];
 		if (! item_set)
@@ -85,8 +83,7 @@ return this.each(function() {
 
 			item['favicon'] = favicon_uri_for(item['uri']);
 
-			opts.add_item_view(item, category_view,
-					   target, context);
+			opts.add_item_view(item, target, context);
 		}
 	}
 

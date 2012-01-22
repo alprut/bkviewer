@@ -39,7 +39,7 @@ return this.each(function() {
 			context['prev'] = box;
 		},
 
-		add_item_view: function(json, category_view, target, context) {
+		add_item_view: function(json, target, context) {
 			var box, cur_box = context['cur_box'], atag;
 
 			box = $('<li />').addClass('bk-item')
