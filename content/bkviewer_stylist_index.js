@@ -46,13 +46,13 @@
 		
 		"ul.bk-box": {
 			"width":         String(column_width) + "px",
-			"padding-top":   "0pt",
-			"padding-left":  "0pt",
-			"padding-right": "0pt",
-			"margin-left":   "0pt",
-			"margin-right":  "0pt",
+			"padding-top":   "0px",
+			"padding-left":  "0px",
+			"padding-right": "0px",
+			"margin-left":   "0px",
+			"margin-right":  "0px",
 			"border-color":  frame_color,
-			"border-width":  "1pt",
+			"border-width":  "1px",
 			"border-style":  "solid",
 			"float":         "left",
 		},
@@ -63,15 +63,15 @@
 			"text-align":       "center",
 			"font-weight":      "bold",
 			"list-style-type":  "none",
-			"margin-top":       "0pt",
-			"margin-bottom":    "0pt",
+			"margin-top":       "0px",
+			"margin-bottom":    "0px",
 		},
 		
 		"li.bk-item": {
 			"list-style-type": "none",
-			"margin-top":      "2pt",
-			"margin-bottom":   "2pt",
-			"padding-left":    "5pt",
+			"margin-top":      "2px",
+			"margin-bottom":   "2px",
+			"padding-left":    "5px",
 		},
 		
 		"a.bk-item, a.configuration": {
