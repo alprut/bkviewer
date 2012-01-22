@@ -16,11 +16,12 @@ return this.each(function() {
 
 			box = $('<ul />').addClass('bk-item')
 					 .appendTo(box);
-			return box;
+
+			context['cur_box'] = box;
 		},
 
 		add_item_view: function(json, category_view, target, context) {
-			var box = category_view, atag;
+			var box = context['cur_box'], atag;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);
