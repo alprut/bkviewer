@@ -74,7 +74,7 @@
 			"padding-left":    "5pt",
 		},
 		
-		"a.bk-item": {
+		"a.bk-item, a.configuration": {
 			"text-decoration": "none",
 			"color":	   text_color,
 		},
@@ -84,6 +84,10 @@
 			"height":  "16px",
 			"margin":  "5px 5px 0px 0px",
 			"padding": "0px 0px 0px 0px",
+		},
+
+		"p.configuration": {
+			"text-align": "right",
 		},
 	};
 
