@@ -64,6 +64,9 @@ return this.each(function() {
 		var category_view;
 		var item;
 
+		if (category['type'] != "text/x-moz-place-container")
+			return;
+
 		category_view = opts.add_category_view(category,
 						       target,
 						       context);
@@ -74,6 +77,12 @@ return this.each(function() {
 
 		for (i = 0; i < item_set.length; i++) {
 			item = item_set[i];
+
+			if (item['type'] != "text/x-moz-place")
+				return;
+			if (item['uri'].substr(0, 6) == "place:")
+				return;
+
 			item['favicon'] = favicon_uri_for(item['uri']);
 
 			opts.add_item_view(item, category_view,

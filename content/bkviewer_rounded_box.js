@@ -7,9 +7,6 @@ return this.each(function() {
 		add_category_view: function(json, target, context) {
 			var result, box = target;
 
-			if (json['type'] != "text/x-moz-place-container")
-				return null;
-
 			box = $('<ul />').addClass('bk-category')
 					 .appendTo(box);
 
@@ -24,11 +21,6 @@ return this.each(function() {
 
 		add_item_view: function(json, category_view, target, context) {
 			var box = category_view, atag;
-
-			if (json['type'] != "text/x-moz-place")
-				return;
-			if (json['uri'].substr(0, 6) == "place:")
-				return null;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);

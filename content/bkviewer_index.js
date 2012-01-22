@@ -30,10 +30,6 @@ return this.each(function() {
 		add_category_view: function(json, target, context) {
 			var box, cur_box = context['cur_box'];
 
-			if (json['type'] != "text/x-moz-place-container")
-				return null;
-
-
 			box = $('<li />').text(json['title'])
 					 .addClass('bk-category')
 					 .appendTo(cur_box);
@@ -45,11 +41,6 @@ return this.each(function() {
 
 		add_item_view: function(json, category_view, target, context) {
 			var box, cur_box = context['cur_box'], atag;
-
-			if (json['type'] != "text/x-moz-place")
-				return;
-			if (json['uri'].substr(0, 6) == "place:")
-				return null;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
