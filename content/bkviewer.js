@@ -63,15 +63,31 @@ return this.each(function() {
 		var i;
 		var category_view;
 		var item;
+		var is_empty = true;
 
 		if (category['type'] != "text/x-moz-place-container")
 			return;
 
-		opts.add_category_view(category, target, context);
-
 		item_set = category[opts.children_key];
 		if (! item_set)
 			return;
+
+		/* IMPROVE_ME: support smart bookmark */
+		for (i = 0; i < item_set.length; i++) {
+			item = item_set[i];
+
+			if (item['type'] != "text/x-moz-place")
+				continue;
+			if (item['uri'].substr(0, 6) == "place:")
+				continue;
+
+			is_empty = false;
+		}
+
+		if (is_empty)
+			return;
+
+		opts.add_category_view(category, target, context);
 
 		for (i = 0; i < item_set.length; i++) {
 			item = item_set[i];
