@@ -150,7 +150,7 @@ return this.each(function() {
 		items_num = Math.floor(box_width / item_width);
 		if (items_num > contents.size()) {
 			items_num = contents.size();
-			is_little = ture;
+			is_little = true;
 		}
 
 		margin = Math.floor((box_width % item_width) / items_num / 2);
