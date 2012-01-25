@@ -80,10 +80,11 @@
 		},
 		
 		"img.favicon": {
-			"width":   "16px",
-			"height":  "16px",
-			"margin":  "5px 5px 0px 0px",
-			"padding": "0px 0px 0px 0px",
+			"width":	  "16px",
+			"height":	  "16px",
+			"margin":	  "0px 5px 0px 0px",
+			"padding":	  "0px 0px 0px 0px",
+			"vertical-align": "text-bottom",
 		},
 
 		"p.configuration": {
