@@ -144,8 +144,8 @@ return this.each(function() {
 		var box_width, item_width, items_num, margin, first_margin;
 		var is_little = false;
 
-		box_width = box.innerWidth();
-		item_width = contents.outerWidth();
+		box_width = box.innerWidth() - 1;
+		item_width = contents.outerWidth() + 1;
 
 		items_num = Math.floor(box_width / item_width);
 		if (items_num > contents.size()) {
