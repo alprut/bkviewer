@@ -58,11 +58,12 @@ return this.each(function() {
 						     box, context['prev']);
 			context['prev'] = box;
 		}
-	}).equal_spacing({
-		item:      '.bk-box'
-
-	}).addClass('es-clearfix');
+	});
 
 	$('.bk-box').css({"height": 500});
 
+	t.addClass('es-clearfix')
+	 .equal_spacing({
+		item:      '.bk-box'
+	});
 })}} (jQuery));
