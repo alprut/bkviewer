@@ -63,15 +63,13 @@
 			"text-align":       "center",
 			"font-weight":      "bold",
 			"list-style-type":  "none",
-			"margin-top":       "0px",
-			"margin-bottom":    "0px",
+			"line-height":      "1.7em",
 		},
 		
 		"li.bk-item": {
 			"list-style-type": "none",
-			"margin-top":      "2px",
-			"margin-bottom":   "2px",
 			"padding-left":    "5px",
+			"line-height":     "1.7em",
 		},
 		
 		"a.bk-item, a.configuration": {
