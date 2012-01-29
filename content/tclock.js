@@ -52,6 +52,6 @@ return this.each(function(){
 	}
 
 	tclock_update();
-	setInterval(tclock_update, 1000);
+	setInterval(function() { tclock_update() }, 1000);
 
 })}}(jQuery));
