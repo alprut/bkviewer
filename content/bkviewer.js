@@ -55,7 +55,7 @@ return this.each(function() {
 							      writer, true,
 							      true, []);
 
-		return eval("(" + writer.value + ")");
+		return JSON.parse(writer.value);
 	}
 
 	function make_category_view(target, category, context, opts) {
