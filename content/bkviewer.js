@@ -182,7 +182,7 @@ return this.each(function() {
 		style += "}\n";
 	}
 
-        $(this).html("<!--" + style + "-->");
+        $(this).text(style);
 
 })}} (jQuery));
 
