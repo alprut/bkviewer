@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+
+<!DOCTYPE overlay SYSTEM "chrome://bkviewer/locale/bkviewer_overlay.dtd">
+
+<overlay id="bkviewer-overlay"
+	 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript"
+		src="chrome://bkviewer/content/bkviewer_overlay.js" />
+
+	<menupopup id="bookmarksMenuPopup">
+		<menuitem id="menu_bkviewer" label="&menu.label;"
+			  class="menuitem-iconic"
+			  image="chrome://bkviewer/skin/icon.png"
+			  insertbefore="organizeBookmarksSeparator"
+			  oncommand="firefox_addon_bkviewer.load_page();"/>
+	</menupopup>
+
+	<menupopup id="BMB_bookmarksPopup">
+		<menuitem id="BMB_bkviewer" label="&menu.label;"
+			  class="menuitem-iconic"
+			  image="chrome://bkviewer/skin/icon.png"
+			  insertafter="BMB_bookmarksShowAll"
+			  oncommand="firefox_addon_bkviewer.load_page();"/>
+	</menupopup>
+</overlay>

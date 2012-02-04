@@ -3,3 +3,7 @@ skin		bkviewer	classic/1.0	skin/classic/bkviewer/
 contract	@mozilla.org/network/protocol/about;1?what=bkviewer {3faca288-53e5-4aa0-b656-b709ada875db}
 
 content	bkviewer		content/
+overlay chrome://browser/content/browser.xul chrome://bkviewer/content/bkviewer_overlay.xul
+
+locale bkviewer en-US locale/en-US/
+locale bkviewer ja-JP locale/ja-JP/
