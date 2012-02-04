@@ -1,5 +1,5 @@
 (function($) {
-$.fn.bkviewer = function(options) {
+$.fn.bkviewer_index = function(options) {
 return this.each(function() {
 	var t = $(this);
 

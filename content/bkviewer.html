@@ -17,6 +17,16 @@
 <script type="text/javascript"
 	src="chrome://bkviewer/content/bkviewer.js"></script>
 
+<script type="text/javascript"
+	src="chrome://bkviewer/content/bkviewer_index.js"></script>
+<script type="text/javascript"
+	src="chrome://bkviewer/content/bkviewer_stylist_index.js"></script>
+
+<script type="text/javascript"
+	src="chrome://bkviewer/content/bkviewer_rounded_box.js"></script>
+<script type="text/javascript"
+	src="chrome://bkviewer/content/bkviewer_stylist_rounded_box.js"></script>
+
 <style> </style>
 </head>
 <body>
@@ -34,13 +44,33 @@ $(function(){
 	var clock = prefs.copyUnicharPref(key_base + "clock", "off");
 	var frame_color = prefs.copyUnicharPref(key_base + "frame_color",
 					        "#0ac");
+	var theme = prefs.copyUnicharPref(key_base + "theme", "rounded_box");
+
 	if (clock == "on") {
 		$('.tclock').tclock({"color": frame_color });
 	} else {
 		$('.tclock').remove();
 	}
 
-	$('.bkviewer').bkviewer();
+	/* The dynamic loading by inserting a script tag does not guarantee
+	 * the order to execute each of '(function() {})'.
+	 * So all script tags are statically written and the following executes
+	 * the selected theme.
+	 */
+	switch (theme) {
+	case "index":
+		$('style').bkviewer_stylist_index();
+		$('.bkviewer').bkviewer_index();
+		break;
+
+	case "rounded_box":
+		$('style').bkviewer_stylist_rounded_box();
+		$('.bkviewer').bkviewer_rounded_box();
+		break;
+
+	default:
+		break;
+	}
 });
 </script>
 <p class="configuration">

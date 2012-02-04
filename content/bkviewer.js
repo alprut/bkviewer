@@ -185,20 +185,3 @@ return this.each(function() {
         $(this).text(style);
 
 })}} (jQuery));
-
-(function($) {
-	var prefs = nsPreferences;
-	var key = "extensions.bkviewer.theme";
-	var theme = prefs.copyUnicharPref(key, "rounded_box");
-	var base_uri = "chrome://bkviewer/content/";
-	var stylist = base_uri + "bkviewer_stylist_" + theme + ".js";
-	var formatter = base_uri + "bkviewer_" + theme + ".js";
-
-	$('<script />').attr({"type": "text/javascript",
-			      "src":  stylist })
-		       .appendTo('head');
-	$('<script />').attr({"type": "text/javascript",
-			      "src":  formatter })
-		       .appendTo('head');
-} (jQuery));
-

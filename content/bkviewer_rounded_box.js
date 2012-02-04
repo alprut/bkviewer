@@ -1,5 +1,5 @@
 (function($) {
-$.fn.bkviewer = function(options) {
+$.fn.bkviewer_rounded_box = function(options) {
 return this.each(function() {
 	var t = $(this);
 

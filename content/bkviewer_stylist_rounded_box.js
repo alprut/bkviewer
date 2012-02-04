@@ -1,4 +1,6 @@
 (function($) {
+$.fn.bkviewer_stylist_rounded_box = function() {
+return this.each(function() {
 	var json;
 	var prefs = nsPreferences;
 	var key_base = "extensions.bkviewer.";
@@ -91,6 +93,6 @@
 		},
 	};
 
-	$('style').stylist(json);
+	$(this).stylist(json);
 		
-} (jQuery));
+})}} (jQuery));

@@ -1,4 +1,6 @@
 (function($) {
+$.fn.bkviewer_stylist_index = function() {
+return this.each(function() {
 	var json;
 
 	var prefs = nsPreferences;
@@ -90,7 +92,6 @@
 		},
 	};
 
-	$('style').stylist(json);
+	$(this).stylist(json);
 
-} (jQuery));
-
+})}} (jQuery));
