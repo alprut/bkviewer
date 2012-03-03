@@ -1,0 +1,7 @@
+#TBB_bkviewer {
+	list-style-image: url("chrome://bkviewer/skin/classic/bkviewer/icon.png");
+}
+
+[iconsize="small"] #TBB_bkviewer {
+	list-style-image: url("chrome://bkviewer/skin/classic/bkviewer/favicon.png");
+}

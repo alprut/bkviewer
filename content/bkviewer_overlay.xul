@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
-<?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css"
+		 href="chrome://global/skin/" ?>
+<?xml-stylesheet type="text/css"
+		 href="chrome://bkviewer/content/bkviewer_overlay.css" ?>
 
 <!DOCTYPE overlay SYSTEM "chrome://bkviewer/locale/bkviewer_overlay.dtd">
 
@@ -25,4 +28,13 @@
 			  insertafter="BMB_bookmarksShowAll"
 			  oncommand="firefox_addon_bkviewer.load_page();"/>
 	</menupopup>
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="TBB_bkviewer"
+			       class="toolbarbutton-1"
+			       label="BookmarkViewer"
+			       tooltiptext="Show bookmarks in a new tab"
+			       image="chrome://bkviewer/skin/favicon.png"
+			       oncommand="firefox_addon_bkviewer.load_page();">
+		</toolbarbutton>
+	</toolbarpalette>
 </overlay>
