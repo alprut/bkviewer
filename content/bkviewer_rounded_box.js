@@ -18,10 +18,12 @@ return this.each(function() {
 					 .appendTo(box);
 
 			context['cur_box'] = box;
+			context['max_width'] = 0;
 		},
 
 		add_item_view: function(json, target, context) {
 			var box = context['cur_box'], atag;
+			var default_height;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(box);
@@ -34,6 +36,15 @@ return this.each(function() {
 			$('<img />').addClass('favicon')
 				    .attr({'src': json['favicon']})
 				    .prependTo(atag);
+
+			if (box.width() > context['max_width']) {
+				context['max_width'] = box.width();
+			}
+		},
+
+		after_adding_category: function(target, context) {
+			context['cur_box'].find('li.bk-item')
+					  .width(context['max_width'] + 1);
 		}
 	});
 

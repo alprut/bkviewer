@@ -67,7 +67,6 @@ return this.each(function() {
 		},
 		
 		"li.bk-item": {
-			"width":           "210px",
 			"list-style-type": "none",
 			"float":           "left",
 			"margin-top":      "2px",
