@@ -138,7 +138,14 @@ return this.each(function() {
 (function($) {
 $.fn.equal_spacing = function(options) {
 return this.each(function() {
-	var t = $(this), item = $(options.item);
+	var t = $(this);
+	var defaults = {
+		should_go_center: true,
+	};
+	var opts = $.extend({}, defaults, options);
+
+	var item = t.find(opts.item);
+	var should_go_center = opts.should_go_center;
 
 	$(window).resize(function() {
 				equal_spacing(t, item);
@@ -159,12 +166,20 @@ return this.each(function() {
 			is_little = true;
 		}
 
-		margin = Math.floor((box_width % item_width) / items_num / 2);
-		contents.css({"margin-right": margin, "margin-left": margin})
+		margin = (box_width % item_width) / items_num;
+		if (should_go_center) {
+			margin = Math.floor(margin / 2);
+			contents.css({"margin-right": margin,
+				      "margin-left":  margin})
+		} else {
+			margin = Math.floor(margin);
+			contents.css({"margin-right": margin,
+				      "margin-left":  0});
+		}
 
-		if (is_little) {
-			/* Don't do equal spacing it there is not enough
-			   items */
+		if (is_little && should_go_center) {
+			/* Don't do equal spacing it there is not
+			   enough items */
 			first_margin = items_num * (2 * margin + item_width);
 			first_margin = box_width - first_margin;
 			first_margin = Math.floor(margin + first_margin / 2);

@@ -50,6 +50,7 @@ return this.each(function() {
 
 	$('ul.bk-category').addClass('es-clearfix');
 	$('ul.bk-item').equal_spacing({
-		item: 'li.bk-item'
+		item: 'li.bk-item',
+		should_go_center: false,
 	});
 })}} (jQuery));
