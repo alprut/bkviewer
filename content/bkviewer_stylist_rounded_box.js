@@ -71,6 +71,8 @@ return this.each(function() {
 			"float":           "left",
 			"margin-top":      "2px",
 			"margin-bottom":   "2px",
+			"padding-left":    "10px",
+			"padding-right":   "10px",
 		},
 		
 		"a.bk-item, a.configuration": {
