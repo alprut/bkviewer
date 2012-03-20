@@ -53,7 +53,6 @@ return this.each(function() {
 	$('ul.bk-item').each(function() {
 		var t = $(this);
 		var item = t.find('li.bk-item');
-		var should_go_center = false;
 
 		$(window).resize(function() {
 					equal_spacing(t, item);
@@ -63,40 +62,19 @@ return this.each(function() {
 
 		function equal_spacing(box, contents) {
 			var box_width, item_width, items_num, margin, first_margin;
-			var is_little = false;
-
 			box_width = box.innerWidth() - 1;
 			item_width = contents.outerWidth() + 1;
 
 			items_num = Math.floor(box_width / item_width);
 			if (items_num > contents.size()) {
 				items_num = contents.size();
-				is_little = true;
 			}
 
 			margin = (box_width % item_width) / items_num;
-			if (should_go_center) {
-				margin = Math.floor(margin / 2);
-				contents.css({"margin-right": margin,
-					      "margin-left":  margin})
-			} else {
-				margin = Math.floor(margin);
-				contents.css({"margin-right": margin,
-					      "margin-left":  0});
-			}
-
-			if (is_little && should_go_center) {
-				/* Don't do equal spacing it there is not
-				   enough items */
-				first_margin = items_num * (2 * margin + item_width);
-				first_margin = box_width - first_margin;
-				first_margin = Math.floor(margin + first_margin / 2);
-				contents.first()
-					.css({"margin-right": margin,
-					      "margin-left": first_margin});
-			}
+			margin = Math.floor(margin);
+			contents.css({"margin-right": margin,
+				      "margin-left":  0});
 		}
-
 	});
 
 })}} (jQuery));
