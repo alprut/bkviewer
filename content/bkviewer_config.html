@@ -91,12 +91,34 @@ p {
 <script type="text/javascript">
 <!--
 $(function(){
+	function show_rounded_box_config() {
+	}
+
+	function remove_rounded_box_config() {
+	}
+
+	function show_index_config() {
+	}
+
+	function remove_index_config() {
+	}
+
 	var prefs = nsPreferences;
 	var key = "extensions.bkviewer.theme";
 	var cur_theme = prefs.copyUnicharPref(key, "rounded_box");
-	var themes = { "index":		{ "name": "Index" },
-		       "rounded_box":	{ "name": "Rounded Box" }
-		     };
+	var themes = {
+		"index": {
+			"name":          "Index",
+			"show_config":   show_index_config,
+			"remove_config": remove_index_config,
+		},
+	       "rounded_box": {
+			"name":		 "Rounded Box",
+			"show_config":   show_rounded_box_config,
+			"remove_config": remove_rounded_box_config,
+		},
+	};
+
 	var base ="chrome://bkviewer/content/bkviewer_";
 	var theme_list = $('.theme_list');
 
@@ -117,9 +139,16 @@ $(function(){
 			prefs.setUnicharPref(key, $(this).attr("id"));
 			theme_list.find(".checked").removeClass("checked");
 			$(this).addClass("checked");
+
+			themes[cur_theme]['remove_config']();
+
+			cur_theme = $(this).attr("id");
+			themes[cur_theme]['show_config']();
 		});
+
 		if (id == cur_theme) {
 			tag.addClass("checked");
+			themes[cur_theme]['show_config']();
 		}
 	}
 });
