@@ -59,22 +59,22 @@ return this.each(function() {
 				 });
 
 		equal_spacing(t, item);
-
-		function equal_spacing(box, contents) {
-			var box_width, item_width, items_num, margin, first_margin;
-			box_width = box.innerWidth() - 1;
-			item_width = contents.outerWidth() + 1;
-
-			items_num = Math.floor(box_width / item_width);
-			if (items_num > contents.size()) {
-				items_num = contents.size();
-			}
-
-			margin = (box_width % item_width) / items_num;
-			margin = Math.floor(margin);
-			contents.css({"margin-right": margin,
-				      "margin-left":  0});
-		}
 	});
+
+	function equal_spacing(box, contents) {
+		var box_width, item_width, items_num, margin, first_margin;
+		box_width = box.innerWidth() - 1;
+		item_width = contents.outerWidth() + 1;
+
+		items_num = Math.floor(box_width / item_width);
+		if (items_num > contents.size()) {
+			items_num = contents.size();
+		}
+
+		margin = (box_width % item_width) / items_num;
+		margin = Math.floor(margin);
+		contents.css({"margin-right": margin,
+			      "margin-left":  0});
+	}
 
 })}} (jQuery));
