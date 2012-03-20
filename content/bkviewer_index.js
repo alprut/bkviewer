@@ -1,7 +1,7 @@
 (function($) {
 $.fn.bkviewer_index = function(options) {
 return this.each(function() {
-	var t = $(this);
+	var t = $(this), columns;
 
 	function add_box(target, cur_box, item, prev) {
 		var box;
@@ -60,10 +60,42 @@ return this.each(function() {
 		}
 	});
 
-	$('.bk-box').css({"height": 500});
+	columns = $('.bk-box');
 
-	t.addClass('es-clearfix')
-	 .equal_spacing({
-		item:      '.bk-box'
-	});
+	columns.css({"height": 500});
+	t.addClass('es-clearfix');
+
+	$(window).resize(function() {
+				equal_spacing(t, columns);
+			 });
+
+	equal_spacing(t, columns);
+
+	function equal_spacing(box, contents) {
+		var box_width, item_width, items_num, margin, first_margin;
+		var is_little = false;
+
+		box_width = box.innerWidth() - 1;
+		item_width = contents.outerWidth() + 1;
+
+		items_num = Math.floor(box_width / item_width);
+		if (items_num > contents.size()) {
+			items_num = contents.size();
+			is_little = true;
+		}
+
+		margin = Math.floor((box_width % item_width) / items_num / 2);
+		contents.css({"margin-right": margin, "margin-left": margin})
+
+		if (is_little) {
+			/* Don't do equal spacing it there is not enough
+			   items */
+			first_margin = items_num * (2 * margin + item_width);
+			first_margin = box_width - first_margin;
+			first_margin = Math.floor(margin + first_margin / 2);
+			contents.first()
+				.css({"margin-right": margin,
+				      "margin-left": first_margin});
+		}
+	}
 })}} (jQuery));
