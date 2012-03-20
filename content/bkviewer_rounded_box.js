@@ -52,7 +52,7 @@ return this.each(function() {
 	});
 
 	function equal_spacing(box, contents) {
-		var box_width, item_width, items_num, margin, first_margin;
+		var box_width, item_width, items_num, margin;
 
 		contents.width("");
 		contents.css("margin-right", 0);
@@ -73,8 +73,7 @@ return this.each(function() {
 		if (items_num <= contents.size()) {
 			margin = (box_width % item_width) / items_num;
 			margin = Math.floor(margin);
-			contents.css({"margin-right": margin,
-				      "margin-left":  0});
+			contents.css("margin-right", margin);
 		}
 	}
 
