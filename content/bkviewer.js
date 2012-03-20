@@ -17,9 +17,6 @@ return this.each(function() {
 	function add_item_view(json, target, context) {
 	}
 
-	function after_adding_category(target, context) {
-	}
-
 /* Generic functions */
 
 	function favicon_uri_for(uri) {
@@ -104,8 +101,6 @@ return this.each(function() {
 
 			opts.add_item_view(item, target, context);
 		}
-
-		opts.after_adding_category(target, context);
 	}
 
 	function add_view(target, json, options) {
@@ -113,11 +108,10 @@ return this.each(function() {
 		var category_set;
 		var i;
 		var defaults = {
-			children_key:          'children',
-			init:		       init,
-			add_category_view:     add_category_view,
-			add_item_view:         add_item_view,
-			after_adding_category: after_adding_category,
+			children_key:      'children',
+			init:		   init,
+			add_category_view: add_category_view,
+			add_item_view:     add_item_view
 		};
 		var context = {};
 
