@@ -18,7 +18,6 @@ return this.each(function() {
 					 .appendTo(box);
 
 			context['cur_box'] = box;
-			context['max_width'] = 0;
 		},
 
 		add_item_view: function(json, target, context) {
@@ -36,16 +35,7 @@ return this.each(function() {
 			$('<img />').addClass('favicon')
 				    .attr({'src': json['favicon']})
 				    .prependTo(atag);
-
-			if (box.width() > context['max_width']) {
-				context['max_width'] = box.width();
-			}
 		},
-
-		after_adding_category: function(target, context) {
-			context['cur_box'].find('li.bk-item')
-					  .width(context['max_width'] + 1);
-		}
 	});
 
 	$('ul.bk-category').addClass('es-clearfix');
@@ -63,6 +53,19 @@ return this.each(function() {
 
 	function equal_spacing(box, contents) {
 		var box_width, item_width, items_num, margin, first_margin;
+
+		contents.width("");
+		contents.css("margin-right", 0);
+
+		item_width = 0;
+		contents.each(function() {
+			if (item_width < $(this).width()) {
+				item_width = $(this).width();
+			}
+		});
+
+		contents.width(item_width + 1);
+
 		box_width = box.innerWidth() - 1;
 		item_width = contents.outerWidth() + 1;
 
