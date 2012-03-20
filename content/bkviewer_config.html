@@ -98,9 +98,43 @@ $(function(){
 	}
 
 	function show_index_config() {
+		var selector;
+		var columns;
+		var prefs = nsPreferences;
+		var key = "extensions.bkviewer.columns";
+		var ptag;
+
+		$('<h2 />').text('Size')
+			   .addClass('index_config')
+			   .appendTo('body');
+
+		ptag = $('<p />').addClass('index_config')
+				 .text('colums in the maximum window')
+				 .appendTo('body');
+
+		$('<select />').attr({ "id": "columns", "name": "columns" })
+			       .addClass('index_config')
+			       .prependTo(ptag);
+
+		selector = $("#columns");
+		for (var i = 1; i <= 20; i++) {
+			$('<option />').attr("value", String(i))
+				       .text(String(i))
+				       .appendTo(selector);
+		}
+
+		columns = prefs.getIntPref(key, 6);
+		selector.val(String(columns));
+		selector.change(function() {
+			columns = parseInt(selector.val());
+			prefs.setIntPref(key, columns);
+		});
+
+		selector.css("font-size", selector.parent().css("font-size"));
 	}
 
 	function remove_index_config() {
+		$('.index_config').remove();
 	}
 
 	var prefs = nsPreferences;
@@ -204,26 +238,6 @@ $(function() {
 });
 
 $(function() {
-	var selector = $("#columns");
-	var columns;
-	var prefs = nsPreferences;
-	var key = "extensions.bkviewer.columns";
-	for (var i = 1; i <= 20; i++) {
-		$('<option />').attr("value", String(i))
-			       .text(String(i))
-			       .appendTo(selector);
-	}
-
-	columns = prefs.getIntPref(key, 6);
-	selector.val(String(columns));
-	selector.change(function() {
-		columns = parseInt(selector.val());
-		prefs.setIntPref(key, columns);
-	});
-	selector.css("font-size", selector.parent().css("font-size"));
-});
-
-$(function() {
 	var prefs = nsPreferences;
 	var key = "extensions.bkviewer.clock";
 	var value = prefs.copyUnicharPref(key, "off");
@@ -275,12 +289,6 @@ $(function() {
 </table>
 <div id="color_picker"></div>
 </div>
-
-<h2>Size</h2>
-<p>
-	<select id="columns" name="columns"></select> colums
-	in the maximum window
-</p>
 
 <h2>Clock</h2>
 <p>
