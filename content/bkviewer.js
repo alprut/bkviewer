@@ -113,7 +113,7 @@ return this.each(function() {
 			add_category_view: add_category_view,
 			add_item_view:     add_item_view
 		};
-		var context = {};
+		var context = new Object;
 
 		var opts = $.extend({}, defaults, options);
 

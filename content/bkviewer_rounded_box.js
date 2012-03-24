@@ -17,11 +17,11 @@ return this.each(function() {
 			box = $('<ul />').addClass('bk-item')
 					 .appendTo(box);
 
-			context['cur_box'] = box;
+			context.cur_box = box;
 		},
 
 		add_item_view: function(json, target, context) {
-			var box = context['cur_box'], atag;
+			var box = context.cur_box, atag;
 			var default_height;
 
 			box = $('<li />').addClass('bk-item')

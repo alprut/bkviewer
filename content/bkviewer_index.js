@@ -24,23 +24,23 @@ return this.each(function() {
 
 	t.show_bookmarks({
 		init: function(target, context) {
-			context['cur_box'] = $('<ul />').addClass('bk-box')
-							.appendTo(target);
+			context.cur_box = $('<ul />').addClass('bk-box')
+						     .appendTo(target);
 		},
 		add_category_view: function(json, target, context) {
-			var box, cur_box = context['cur_box'];
+			var box, cur_box = context.cur_box;
 
 			box = $('<li />').text(json['title'])
 					 .addClass('bk-category')
 					 .appendTo(cur_box);
 
-			context['cur_box'] = add_box(target, cur_box, box,
-						     context['prev']);
-			context['prev'] = box;
+			context.cur_box = add_box(target, cur_box, box,
+						  context.prev);
+			context.prev = box;
 		},
 
 		add_item_view: function(json, target, context) {
-			var box, cur_box = context['cur_box'], atag;
+			var box, cur_box = context.cur_box, atag;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
@@ -54,9 +54,9 @@ return this.each(function() {
 				    .attr({'src': json['favicon']})
 				    .prependTo(atag);
 
-			context['cur_box'] = add_box(target, cur_box,
-						     box, context['prev']);
-			context['prev'] = box;
+			context.cur_box = add_box(target, cur_box, box,
+						  context.prev);
+			context.prev = box;
 		}
 	});
 
