@@ -188,7 +188,7 @@ $(function(){
 });
 
 $(function() {
-	var height, margin;
+	var margin;
 	var picker = $('#color_picker');
 	var target = $('#frame_color');
 	var prefs = nsPreferences;
@@ -198,6 +198,7 @@ $(function() {
 		     "text_color":  "rgb(0,0,0)" };
 	var value;
 	var id;
+	var align_target;
 
 	id = target.attr("id");
 	value = prefs.copyUnicharPref(key_base + id, defs[id]);
@@ -215,9 +216,16 @@ $(function() {
 		}
 	});
 
-	height = picker.height();
-	margin = (picker.parent().height() - picker.height()) / 2;
-	picker.css("margin-top", margin);
+	table = $('#color_table');
+	margin = picker.outerHeight() - table.outerHeight();
+	if (margin < 0) {
+		align_target = picker;
+		margin = 0 - margin;
+	} else {
+		align_target = table;
+	}
+	margin /= 2;
+	align_target.css("margin-top", margin);
 
 	$('.color_box').each(function() {
 		id = $(this).attr("id");
