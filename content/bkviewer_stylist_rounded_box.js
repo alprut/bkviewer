@@ -55,13 +55,11 @@ return this.each(function() {
 			"list-style-type":  "none",
 			"clear":            "left",
 			"margin-top":       "0px",
-			"margin-bottom":    "5px",
 			"border-radius":    "8px 8px 0px 0px",
 		},
 		
 		"ul.bk-item": {
-			"padding-left":  "0px",
-			"padding-right": "0px",
+			"padding":       "3px 0px",
 			"margin-left":   "0px",
 			"margin-right":  "0px",
 		},

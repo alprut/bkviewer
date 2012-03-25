@@ -38,9 +38,8 @@ return this.each(function() {
 		},
 	});
 
-	$('ul.bk-category').addClass('es-clearfix');
-
-	$('ul.bk-item').each(function() {
+	$('ul.bk-item').addClass('es-clearfix')
+		       .each(function() {
 		var t = $(this);
 		var item = t.find('li.bk-item');
 
