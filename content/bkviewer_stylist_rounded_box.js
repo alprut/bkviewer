@@ -83,7 +83,7 @@ return this.each(function() {
 		"img.favicon": {
 			"width":   "16px",
 			"height":  "16px",
-			"margin":  "5px 5px 0px 0px",
+			"margin":  "0 5px 0 0",
 			"padding": "0px 0px 0px 0px",
 			"vertical-align": "text-bottom",
 		},
