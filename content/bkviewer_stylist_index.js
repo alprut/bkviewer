@@ -25,6 +25,7 @@ return this.each(function() {
 		"body": {
 			"background-color":	bg_color,
 			"color":		text_color,
+			"font-family": "\"Helvetica Neue\",Helvetica,Arial,sans-serif",
 		},
 		".es-clearfix:after": {
 			"content":	"\".\"",
