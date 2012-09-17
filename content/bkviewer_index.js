@@ -63,7 +63,7 @@ return this.each(function() {
 	columns = $('.bk-box');
 
 	columns.css({"height": 500});
-	t.addClass('es-clearfix');
+	t.addClass('bv-clearfix');
 
 	$(window).resize(function() {
 				equal_spacing(t, columns);

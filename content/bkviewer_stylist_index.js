@@ -27,7 +27,7 @@ return this.each(function() {
 			"color":		text_color,
 			"font-family": "\"Helvetica Neue\",Helvetica,Arial,sans-serif",
 		},
-		".es-clearfix:after": {
+		".bv-clearfix:after": {
 			"content":	"\".\"",
 			"clear":	"both",
 			"display":	"block",
@@ -35,11 +35,11 @@ return this.each(function() {
 			"visibility":	"hidden",
 		},
 		
-		"* html .es-clearfix": {
+		"* html .bv-clearfix": {
 			"height":	"1%",
 		},
 		
-		".es-clearfix": {
+		".bv-clearfix": {
 			"display":	"block",
 		},
 		
