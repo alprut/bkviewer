@@ -34,10 +34,6 @@ return this.each(function() {
 			"visibility":	"hidden",
 		},
 		
-		".es-clearfix": {
-			"display":	"inline-block",
-		},
-		
 		"* html .es-clearfix": {
 			"height":	"1%",
 		},
