@@ -10,11 +10,16 @@ return this.each(function() {
 						"#fff");
 	var text_color =  prefs.copyUnicharPref(key_base + "text_color",
 						"#00f");
+	var zoom = prefs.getIntPref(key_base + "zoom", 100);
+	var font_size = String(zoom) + "%";
+	var favicon_size = String(Math.floor(16 * zoom / 100.0)) + "px";
+
 	json = {
 		"body": {
 			"background-color": bg_color,
 			"color": text_color,
 			"font-family": "\"Helvetica Neue\",Helvetica,Arial,sans-serif",
+			"font-size": font_size,
 		},
 		".bv-clearfix:after": {
 			"content":    "\".\"",
@@ -76,8 +81,8 @@ return this.each(function() {
 		},
 		
 		"img.favicon": {
-			"width":   "16px",
-			"height":  "16px",
+			"width":   favicon_size,
+			"height":  favicon_size,
 			"margin":  "0 5px 0 0",
 			"padding": "0px 0px 0px 0px",
 			"vertical-align": "text-bottom",
@@ -85,6 +90,20 @@ return this.each(function() {
 
 		"p.configuration": {
 			"text-align": "right",
+		},
+
+		".tclock": {
+			"text-align": "center",
+			"color":      bg_color,
+			"margin-top":  "12px",
+		},
+
+		".tclock-time": {
+			"font-size": "220%",
+		},
+
+		".tclock-date": {
+			"font-size": "110%",
 		},
 	};
 

@@ -258,6 +258,26 @@ $(function() {
 	});
 });
 
+$(function() {
+	var prefs = nsPreferences;
+	var key = "extensions.bkviewer.zoom";
+	var value = prefs.getIntPref(key, 100);
+	var selector = $('#zoom')
+
+	if (value < 100 || value > 300 || (value % 25) != 0) {
+		value = 100;
+	}
+
+	value = String(value);
+
+	selector.val(value).change(function() {
+		var new_value = $('#zoom option:selected').val();
+		prefs.setIntPref(key, parseInt(new_value));
+	});
+
+	selector.css("font-size", selector.parent().css("font-size"));
+});
+
 -->
 </script>
 
@@ -298,6 +318,21 @@ $(function() {
 <div id="color_picker"></div>
 </div>
 
+<h2>Zoom</h2>
+<p>
+	<select id="zoom">
+		<option value="100">100</option>
+		<option value="125">125</option>
+		<option value="150">150</option>
+		<option value="175">175</option>
+		<option value="200">200</option>
+		<option value="225">225</option>
+		<option value="250">250</option>
+		<option value="275">275</option>
+		<option value="300">300</option>
+	</select>
+	%
+</p>
 <h2>Clock</h2>
 <p>
 	<input type="radio" name="clock" value="on">Show
