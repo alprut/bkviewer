@@ -13,7 +13,7 @@ return this.each(function() {
 						"#00f");
 	var zoom = prefs.getIntPref(key_base + "zoom", 100);
 	var font_size = String(zoom) + "%";
-	var favicon_size = String(Math.floor(16 * zoom / 100.0)) + "px";
+	var favicon_size = String(Math.floor(12 * zoom / 100.0)) + "px";
 
 	/* 2 is 2 * (border width), 15 is the width of scroll bar,
 	   1 is because the border width is over 1px and it is
@@ -85,7 +85,6 @@ return this.each(function() {
 			"height":	  favicon_size,
 			"margin":	  "0px 5px 0px 0px",
 			"padding":	  "0px 0px 0px 0px",
-			"vertical-align": "text-bottom",
 		},
 
 		"p.configuration": {
