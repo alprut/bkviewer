@@ -55,12 +55,19 @@ img.checked {
 	margin-left: 0px;
 }
 
+.color_box_wrapper {
+	position: relative;
+	width: 36px;
+	height: 36px;
+	background: url(select.png);
+}
 .color_box {
-	width: 2em;
-	height: 2ex;
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 28px;
+	height: 28px;
+	background: url(select.png) center;
 }
 #color_table img {
 	display: block;
@@ -70,11 +77,6 @@ img.checked {
 	margin-left: 5ex;
 }
 
-#color_picker {
-	width: 200px;
-	float: left;
-	margin-left: 5ex;
-}
 p {
 	margin-left: 5ex;
 }
@@ -86,7 +88,8 @@ p {
 <script type="text/javascript"
 	src="chrome://global/content/nsUserSettings.js"></script>
 <script type="text/javascript"
-	src="chrome://bkviewer/content/jquery.colors.pickers.hslLite.bundle.js"></script>
+	src="chrome://bkviewer/content/colorpicker.js"></script>
+<link rel="stylesheet" href="colorpicker.css" type="text/css" />
 
 <script type="text/javascript">
 <!--
@@ -189,8 +192,6 @@ $(function(){
 
 $(function() {
 	var margin;
-	var picker = $('#color_picker');
-	var target = $('#frame_color');
 	var prefs = nsPreferences;
 	var key_base = "extensions.bkviewer.";
 	var defs = { "frame_color": "rgb(0,170,204)",
@@ -198,50 +199,29 @@ $(function() {
 		     "text_color":  "rgb(0,0,255)" };
 	var value;
 	var id;
-	var align_target;
+	var boxes = $('.color_box');
 
-	id = target.attr("id");
-	value = prefs.copyUnicharPref(key_base + id, defs[id]);
-
-	picker.hslLiteColorPicker({
-		'color': $.colors(value),
-
-		'onChange': function(color) {
-			target.css("background", color.toString());
-		},
-
-		'onEndChange': function(color) {
-			prefs.setUnicharPref(key_base + target.attr("id"),
-					     color.toString());
-		}
-	});
-
-	table = $('#color_table');
-	margin = picker.outerHeight() - table.outerHeight();
-	if (margin < 0) {
-		align_target = picker;
-		margin = 0 - margin;
-	} else {
-		align_target = table;
-	}
-	margin /= 2;
-	align_target.css("margin-top", margin);
-
-	$('.color_box').each(function() {
+	boxes.each(function() {
 		id = $(this).attr("id");
 		value = prefs.copyUnicharPref(key_base + id, defs[id]);
-		$(this).css("background", value);
-	}).click(function() {
-		target.parent().parent().find("img").remove();
-
-		target = $(this);
-		$("<img />").attr("src",
-				  "chrome://bkviewer/content/triangle.png")
-			    .appendTo(target.parent().parent().find(".arrow"));
-
-		id = target.attr("id");
-		value = prefs.copyUnicharPref(key_base + id, defs[id]);
-		picker.hslLiteColorPicker({ 'color': $.colors(value) });
+		$(this).css("background-color", value)
+		       .ColorPicker({
+			color: value,
+			onSubmit: function(hsb, hex, rgb, el) {
+				hex = '#' + hex;
+				$(el).css("background-color", hex);
+				prefs.setUnicharPref(key_base +
+							$(el).attr("id"),
+						     hex);
+			},
+			onBeforeShow: function(el) {
+				boxes.each(function() {
+					if (this != el) {
+						$(this).ColorPickerHide();
+					}
+				});
+			},
+		});
 	});
 });
 
@@ -292,30 +272,28 @@ $(function() {
 	<tr>
 		<td>Frame</td>
 		<td>
-			<div id="frame_color" class="color_box"></div>
-		</td>
-		<td class="arrow">
-			<img src="chrome://bkviewer/content/triangle.png"></img>
+			<div class="color_box_wrapper">
+				<div id="frame_color" class="color_box"></div>
+			</div>
 		</td>
 	</tr>
 	<tr>
 		<td>Background</td>
 		<td>
-			<div id="bg_color" class="color_box"></div>
-		</td>
-		<td class="arrow">
+			<div class="color_box_wrapper">
+				<div id="bg_color" class="color_box"></div>
+			</div>
 		</td>
 	</tr>
 	<tr>
 		<td>Text</td>
 		<td>
-			<div id="text_color" class="color_box"></div>
-		</td>
-		<td class="arrow">
+			<div class="color_box_wrapper">
+				<div id="text_color" class="color_box"></div>
+			</div>
 		</td>
 	</tr>
 </table>
-<div id="color_picker"></div>
 </div>
 
 <h2>Zoom</h2>
