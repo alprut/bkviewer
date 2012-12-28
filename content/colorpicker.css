@@ -153,7 +153,6 @@
 	background:-webkit-gradient(linear, left top, left bottom,
 				    color-stop(0.05, #ededed),
 				    color-stop(1, #cbcfd7));
-	background:-moz-linear-gradient(center top, #ededed 5%, #cbcfd7 100%);
 	background:     linear-gradient(center top, #ededed 5%, #cbcfd7 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(
 			startColorstr='#ededed', endColorstr='#cbcfd7');
@@ -184,7 +183,6 @@
 	background:-webkit-gradient(linear, left top, left bottom,
 				    color-stop(0.05, #cbcfd7),
 				    color-stop(1, #ededed));
-	background:-moz-linear-gradient(center top, #cbcfd7 5%, #ededed 100%);
 	background:     linear-gradient(center top, #cbcfd7 5%, #ededed 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(
 			startColorstr='#cbcfd7', endColorstr='#ededed');
