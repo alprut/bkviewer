@@ -54,7 +54,7 @@ return this.each(function() {
 		var i, box, title;
 
 		hiddens.items = JSON.parse(prefs.copyUnicharPref(key, "[]"));
-		target.find('ul.bk-category').each(function() {
+		target.children().each(function() {
 			box = $(this);
 			title = box.children('li').text();
 			i = hiddens.items.indexOf(title);
@@ -132,20 +132,18 @@ return this.each(function() {
 		},
 	});
 
-	$('ul.bk-item').addClass('bv-clearfix')
-		       .each(function() {
-		var t = $(this);
-		var item = t.find('li.bk-item');
+	t.children().children('ul').addClass('bv-clearfix')
+				   .each(function() {
+		var ul = $(this);
+		equal_spacing(ul, ul.children());
 
 		$(window).resize(function() {
-					/* This condition avoids items from
-					 * setting their width to 0.
-					 */
-					if (t.css('display') != 'none')
-						equal_spacing(t, item);
-				 });
-
-		equal_spacing(t, item);
+			/* This condition avoids items from
+			 * setting their width to 0.
+			 */
+			if (ul.css('display') != 'none')
+				equal_spacing(ul, ul.children());
+		});
 	});
 
 	hide_categories(t, hiddens);
