@@ -24,6 +24,13 @@ return this.each(function() {
 				if (i == -1)
 					hiddens.items.push(title);
 			} else {
+				/* We have to fix spaces after showing
+				 * the category box, not before it,
+				 * because the width() of hidden items are
+				 * 1pt.
+				 */
+				equal_spacing(box, box.find('li.bk-item'));
+
 				if (i != -1)
 					remove_item(hiddens, i);
 			}
@@ -79,7 +86,11 @@ return this.each(function() {
 		var item = t.find('li.bk-item');
 
 		$(window).resize(function() {
-					equal_spacing(t, item);
+					/* This condition avoids items from
+					 * setting their width to 0.
+					 */
+					if (t.css('display') != 'none')
+						equal_spacing(t, item);
 				 });
 
 		equal_spacing(t, item);
