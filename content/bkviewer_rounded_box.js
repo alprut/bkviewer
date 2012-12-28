@@ -12,31 +12,35 @@ return this.each(function() {
 		hiddens.items = head.concat(tail);
 	}
 
-	function toggle_and_save(box, title, hiddens) {
+	function update_hiddens(box, title, hiddens) {
 		var prefs = nsPreferences;
 		var key = "extensions.bkviewer.hiddens";
+		var i = hiddens.items.indexOf(title);
 
+		if (box.css('display') == 'none') {
+			if (i == -1)
+				hiddens.items.push(title);
+		} else {
+			if (i != -1)
+				remove_item(hiddens, i);
+		}
+
+		prefs.setUnicharPref(key, JSON.stringify(hiddens.items));
+	}
+
+	function toggle(box, hiddens) {
 		box.slideToggle(function() {
-			var box = $(this);
-			var i = hiddens.items.indexOf(title);
-
-			if (box.css('display') == 'none') {
-				if (i == -1)
-					hiddens.items.push(title);
-			} else {
+			var ul = $(this);
+			if (ul.css('display') != 'none') {
 				/* We have to fix spaces after showing
 				 * the category box, not before it,
 				 * because the width() of hidden items are
 				 * 1pt.
 				 */
-				equal_spacing(box, box.find('li.bk-item'));
-
-				if (i != -1)
-					remove_item(hiddens, i);
+				equal_spacing(ul, ul.children('li.bk-item'));
 			}
 
-			prefs.setUnicharPref(key,
-					     JSON.stringify(hiddens.items));
+			update_hiddens(ul, ul.prev().text(), hiddens);
 		});
 	}
 
@@ -51,9 +55,7 @@ return this.each(function() {
 				   .addClass('bk-category')
 				   .appendTo(box)
 				   .click(function() {
-					toggle_and_save($(this).next(),
-							json['title'],
-							hiddens);
+					toggle($(this).next(), hiddens);
 				   });
 
 			box = $('<ul />').addClass('bk-item')
