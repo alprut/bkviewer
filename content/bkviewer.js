@@ -59,48 +59,38 @@ return this.each(function() {
 	}
 
 	function make_category_view(target, category, context, opts) {
-		var item_set;
+		var children;
 		var i;
 		var category_view;
 		var item;
 		var is_empty = true;
 		var category_set = new Array();
+		var item_set = new Array();
 
 		if (category['type'] != "text/x-moz-place-container")
 			return;
 
-		item_set = category[opts.children_key];
-		if (! item_set)
+		children = category[opts.children_key];
+		if (! children)
 			return;
 
 		/* IMPROVE_ME: support smart bookmark */
-		for (i = 0; i < item_set.length; i++) {
-			item = item_set[i];
-
-			if (item['type'] != "text/x-moz-place")
-				continue;
-			if (item['uri'].substr(0, 6) == "place:")
-				continue;
-
-			is_empty = false;
-		}
-
-		if (is_empty)
-			return;
-
-		opts.add_category_view(category, target, context);
-
-		for (i = 0; i < item_set.length; i++) {
-			item = item_set[i];
+		for (i = 0; i < children.length; i++) {
+			item = children[i];
 
 			if (item['type'] == "text/x-moz-place-container") {
 				category_set.push(item);
-				continue;
-			} else if (item['type'] != "text/x-moz-place")
-				continue;
-			if (item['uri'].substr(0, 6) == "place:")
-				continue;
+			} else if (item['type'] == "text/x-moz-place" &&
+				   item['uri'].substr(0, 6) != "place:") {
+				item_set.push(item);
+			}
+		}
 
+		if (item_set.length != 0)
+			opts.add_category_view(category, target, context);
+
+		for (i = 0; i < item_set.length; i++) {
+			item = item_set[i];
 			item['favicon'] = favicon_uri_for(item['uri']);
 
 			opts.add_item_view(item, target, context);
