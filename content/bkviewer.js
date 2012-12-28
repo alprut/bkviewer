@@ -58,7 +58,8 @@ return this.each(function() {
 		return JSON.parse(writer.value);
 	}
 
-	function make_category_view(target, category, context, opts) {
+	function make_category_view(target, category, context, opts,
+				    category_is_first) {
 		var children;
 		var i;
 		var category_view;
@@ -86,6 +87,13 @@ return this.each(function() {
 			}
 		}
 
+		if (category_is_first) {
+			for (i = 0; i < category_set.length; i++) {
+				make_category_view(target, category_set[i],
+						   context, opts, false);
+			}
+		}
+
 		if (item_set.length != 0)
 			opts.add_category_view(category, target, context);
 
@@ -96,9 +104,11 @@ return this.each(function() {
 			opts.add_item_view(item, target, context);
 		}
 
-		for (i = 0; i < category_set.length; i++) {
-			category = category_set[i];
-			make_category_view(target, category, context, opts);
+		if (! category_is_first) {
+			for (i = 0; i < category_set.length; i++) {
+				make_category_view(target, category_set[i],
+						   context, opts, false);
+			}
 		}
 	}
 
@@ -115,7 +125,7 @@ return this.each(function() {
 
 		opts.init(target, context);
 
-		make_category_view(target, json, context, opts);
+		make_category_view(target, json, context, opts, true);
 	}
 })}} (jQuery));
 
