@@ -12,7 +12,10 @@ return this.each(function() {
 
 			$('<li />').text(json['title'])
 				   .addClass('bk-category')
-				   .appendTo(box);
+				   .appendTo(box)
+				   .click(function() {
+					$(this).next().slideToggle();
+				   });
 
 			box = $('<ul />').addClass('bk-item')
 					 .appendTo(box);
