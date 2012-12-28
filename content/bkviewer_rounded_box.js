@@ -44,6 +44,56 @@ return this.each(function() {
 		});
 	}
 
+	function hide_categories(target, hiddens) {
+		/* Users may change titles, so this synchronize
+		 * the preferences with the actual titles.
+		 */
+		var prefs = nsPreferences;
+		var key = "extensions.bkviewer.hiddens";
+		var new_hiddens = [];
+		var i, box, title;
+
+		hiddens.items = JSON.parse(prefs.copyUnicharPref(key, "[]"));
+		target.find('ul.bk-category').each(function() {
+			box = $(this);
+			title = box.children('li').text();
+			i = hiddens.items.indexOf(title);
+			if (i != -1) {
+				box.children('ul').hide();
+				new_hiddens.push(title);
+			}
+		});
+
+		hiddens.items = new_hiddens;
+		prefs.setUnicharPref(key, JSON.stringify(hiddens.items));
+	}
+
+	function equal_spacing(box, contents) {
+		var box_width, item_width, items_num, margin;
+
+		contents.width("");
+		contents.css("margin-right", 0);
+
+		item_width = 0;
+		contents.each(function() {
+			if (item_width < $(this).width()) {
+				item_width = $(this).width();
+			}
+		});
+
+		contents.width(item_width + 1);
+
+		box_width = box.innerWidth() - 1;
+		item_width = contents.outerWidth() + 1;
+
+		items_num = Math.floor(box_width / item_width);
+		if (items_num <= contents.size()) {
+			margin = (box_width % item_width) / items_num;
+			margin = Math.floor(margin);
+			contents.css("margin-right", margin);
+		}
+	}
+
 	t.show_bookmarks({
 		add_category_view: function(json, target, context) {
 			var result, box = target;
@@ -99,55 +149,5 @@ return this.each(function() {
 	});
 
 	hide_categories(t, hiddens);
-
-	function hide_categories(target, hiddens) {
-		/* Users may change titles, so this synchronize
-		 * the preferences with the actual titles.
-		 */
-		var prefs = nsPreferences;
-		var key = "extensions.bkviewer.hiddens";
-		var new_hiddens = [];
-		var i, box, title;
-
-		hiddens.items = JSON.parse(prefs.copyUnicharPref(key, "[]"));
-		target.find('ul.bk-category').each(function() {
-			box = $(this);
-			title = box.children('li').text();
-			i = hiddens.items.indexOf(title);
-			if (i != -1) {
-				box.children('ul').hide();
-				new_hiddens.push(title);
-			}
-		});
-
-		hiddens.items = new_hiddens;
-		prefs.setUnicharPref(key, JSON.stringify(hiddens.items));
-	}
-
-	function equal_spacing(box, contents) {
-		var box_width, item_width, items_num, margin;
-
-		contents.width("");
-		contents.css("margin-right", 0);
-
-		item_width = 0;
-		contents.each(function() {
-			if (item_width < $(this).width()) {
-				item_width = $(this).width();
-			}
-		});
-
-		contents.width(item_width + 1);
-
-		box_width = box.innerWidth() - 1;
-		item_width = contents.outerWidth() + 1;
-
-		items_num = Math.floor(box_width / item_width);
-		if (items_num <= contents.size()) {
-			margin = (box_width % item_width) / items_num;
-			margin = Math.floor(margin);
-			contents.css("margin-right", margin);
-		}
-	}
 
 })}} (jQuery));
