@@ -64,6 +64,7 @@ return this.each(function() {
 		var category_view;
 		var item;
 		var is_empty = true;
+		var category_set = new Array();
 
 		if (category['type'] != "text/x-moz-place-container")
 			return;
@@ -92,7 +93,10 @@ return this.each(function() {
 		for (i = 0; i < item_set.length; i++) {
 			item = item_set[i];
 
-			if (item['type'] != "text/x-moz-place")
+			if (item['type'] == "text/x-moz-place-container") {
+				category_set.push(item);
+				continue;
+			} else if (item['type'] != "text/x-moz-place")
 				continue;
 			if (item['uri'].substr(0, 6) == "place:")
 				continue;
@@ -101,11 +105,14 @@ return this.each(function() {
 
 			opts.add_item_view(item, target, context);
 		}
+
+		for (i = 0; i < category_set.length; i++) {
+			category = category_set[i];
+			make_category_view(target, category, context, opts);
+		}
 	}
 
 	function add_view(target, json, options) {
-		var category;
-		var category_set;
 		var i;
 		var defaults = {
 			children_key:      'children',
@@ -114,16 +121,9 @@ return this.each(function() {
 			add_item_view:     add_item_view
 		};
 		var context = new Object;
-
 		var opts = $.extend({}, defaults, options);
 
 		opts.init(target, context);
-
-		category_set = json['children'];
-		for (i = 0; i < category_set.length; i++) {
-			category = category_set[i];
-			make_category_view(target, category, context, opts);
-		}
 
 		make_category_view(target, json, context, opts);
 	}
