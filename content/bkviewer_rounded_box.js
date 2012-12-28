@@ -85,13 +85,30 @@ return this.each(function() {
 		equal_spacing(t, item);
 	});
 
-	get_hiddens(hiddens);
+	hide_categories(t, hiddens);
 
-	function get_hiddens(hiddens) {
+	function hide_categories(target, hiddens) {
+		/* Users may change titles, so this synchronize
+		 * the preferences with the actual titles.
+		 */
 		var prefs = nsPreferences;
 		var key = "extensions.bkviewer.hiddens";
+		var new_hiddens = [];
+		var i, box, title;
 
 		hiddens.items = JSON.parse(prefs.copyUnicharPref(key, "[]"));
+		target.find('ul.bk-category').each(function() {
+			box = $(this);
+			title = box.children('li').text();
+			i = hiddens.items.indexOf(title);
+			if (i != -1) {
+				box.children('ul').hide();
+				new_hiddens.push(title);
+			}
+		});
+
+		hiddens.items = new_hiddens;
+		prefs.setUnicharPref(key, JSON.stringify(hiddens.items));
 	}
 
 	function equal_spacing(box, contents) {
