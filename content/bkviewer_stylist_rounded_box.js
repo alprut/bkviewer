@@ -59,6 +59,9 @@ return this.each(function() {
 			"margin-top":       "0px",
 			"border-radius":    "8px 8px 0px 0px",
 		},
+		"li.bk-category:hover": {
+			"cursor": "pointer",
+		},
 		
 		"ul.bk-item": {
 			"padding":       "3px 0px",
