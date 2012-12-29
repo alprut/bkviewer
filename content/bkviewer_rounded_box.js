@@ -68,20 +68,23 @@ return this.each(function() {
 		prefs.setUnicharPref(key, JSON.stringify(hiddens.items));
 	}
 
-	function equal_spacing(box, contents) {
-		var box_width, item_width, items_num, margin;
+	function align_width(contents) {
+		var item_width = 0;
 
-		contents.width("");
-		contents.css("margin-right", 0);
-
-		item_width = 0;
-		contents.each(function() {
+		contents.width("")
+			.each(function() {
 			if (item_width < $(this).width()) {
 				item_width = $(this).width();
 			}
 		});
 
 		contents.width(item_width + 1);
+	}
+
+	function equal_spacing(box, contents) {
+		var box_width, item_width, items_num, margin;
+
+		contents.css("margin-right", 0);
 
 		box_width = box.innerWidth() - 1;
 		item_width = contents.outerWidth() + 1;
@@ -135,6 +138,7 @@ return this.each(function() {
 	t.children().children('ul').addClass('bv-clearfix')
 				   .each(function() {
 		var ul = $(this);
+		align_width(ul.children());
 		equal_spacing(ul, ul.children());
 
 		$(window).resize(function() {
