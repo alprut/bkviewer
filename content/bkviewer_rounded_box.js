@@ -29,6 +29,12 @@ return this.each(function() {
 	}
 
 	function toggle(box, hiddens) {
+		var title = box.prev();
+		if (box.css('display') != 'none') {
+			title.css("border-radius", "8px");
+		} else {
+			title.css("border-radius", "8px 8px 0px 0px");
+		}
 		box.slideToggle(function() {
 			var ul = $(this);
 			if (ul.css('display') != 'none') {
@@ -59,6 +65,7 @@ return this.each(function() {
 			title = box.children('li').text();
 			i = hiddens.items.indexOf(title);
 			if (i != -1) {
+				box.css("border-radius", "8px");
 				box.children('ul').hide();
 				new_hiddens.push(title);
 			}
