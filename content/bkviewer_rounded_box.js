@@ -90,7 +90,7 @@ return this.each(function() {
 		item_width = contents.outerWidth() + 1;
 
 		items_num = Math.floor(box_width / item_width);
-		if (items_num <= contents.size()) {
+		if (items_num <= contents.length) {
 			margin = (box_width % item_width) / items_num;
 			margin = Math.floor(margin);
 			contents.css("margin-right", margin);
