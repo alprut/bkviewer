@@ -31,7 +31,8 @@ return this.each(function() {
 	function toggle(box, hiddens) {
 		var title = box.prev();
 		if (box.css('display') != 'none') {
-			title.css("border-radius", "8px");
+			title.animate({"border-bottom-left-radius": 8,
+				       "border-bottom-right-radius": 8}, 400);
 		} else {
 			title.css("border-radius", "8px 8px 0px 0px");
 		}
