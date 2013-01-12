@@ -65,7 +65,7 @@ return this.each(function() {
 			title = box.children('li').text();
 			i = hiddens.items.indexOf(title);
 			if (i != -1) {
-				box.css("border-radius", "8px");
+				box.children('li').css("border-radius", "8px");
 				box.children('ul').hide();
 				new_hiddens.push(title);
 			}
