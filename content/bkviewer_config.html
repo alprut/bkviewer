@@ -139,7 +139,7 @@ $(function(){
 
 	var prefs = nsPreferences;
 	var key = "extensions.bkviewer.theme";
-	var cur_theme = prefs.copyUnicharPref(key, "rounded_box");
+	var cur_theme = new Object;
 	var themes = {
 		"index": {
 			"name":          "Index",
@@ -156,6 +156,8 @@ $(function(){
 	var base ="chrome://bkviewer/content/bkviewer_";
 	var theme_list = $('.theme_list');
 
+	cur_theme.value = prefs.copyUnicharPref(key, "rounded_box");
+
 	for (var id in themes) {
 		var theme = themes[id];
 		var tag = $('<li />').addClass("theme")
@@ -169,20 +171,23 @@ $(function(){
 					  "src": base + id + ".png"})
 				  .addClass("theme")
 				  .appendTo(tag);
-		tag.click(function() {
-			prefs.setUnicharPref(key, $(this).attr("id"));
-			theme_list.find(".checked").removeClass("checked");
-			$(this).addClass("checked");
+		tag.click((function(themeObj) {
+			return function() {
+				prefs.setUnicharPref(key, $(this).attr("id"));
+				theme_list.find(".checked")
+					  .removeClass("checked");
+				$(this).addClass("checked");
 
-			themes[cur_theme]['remove_config']();
+				themes[themeObj.value]['remove_config']();
 
-			cur_theme = $(this).attr("id");
-			themes[cur_theme]['show_config']();
-		});
+				themeObj.value = $(this).attr("id");
+				themes[themeObj.value]['show_config']();
+			}
+		})(cur_theme));
 
-		if (id == cur_theme) {
+		if (id == cur_theme.value) {
 			tag.addClass("checked");
-			themes[cur_theme]['show_config']();
+			themes[cur_theme.value]['show_config']();
 		}
 	}
 });
