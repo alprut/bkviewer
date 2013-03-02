@@ -194,11 +194,10 @@ $(function() {
 	var defs = { "frame_color": "rgb(0,170,204)",
 		     "bg_color":    "rgb(255,255,255)",
 		     "text_color":  "rgb(0,0,255)" };
-	var id;
 	var boxes = $('.color_box');
 
 	boxes.each(function() {
-		id = $(this).attr("id");
+		var id = $(this).attr("id");
 		var value = prefs.copyUnicharPref(key_base + id, defs[id]);
 		$(this).css("background-color", value)
 		       .ColorPicker({
