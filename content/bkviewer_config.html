@@ -158,8 +158,8 @@ $(function(){
 
 	for (var id in themes) {
 		var theme = themes[id];
-		tag = $('<li />').addClass("theme")
-				 .appendTo(theme_list);
+		var tag = $('<li />').addClass("theme")
+				     .appendTo(theme_list);
 		tag = $('<div />').addClass("theme")
 				  .appendTo(tag);
 		tag.text(theme['name']);
