@@ -126,7 +126,7 @@ return this.each(function() {
 		},
 
 		add_item_view: function(json, target, context) {
-			var box = context.cur_box, atag;
+			var box = context.cur_box, atag, img;
 			var default_height;
 
 			box = $('<li />').addClass('bk-item')
@@ -137,9 +137,11 @@ return this.each(function() {
 				  .addClass('bk-item')
 				  .appendTo(box);
 
-			$('<img />').addClass('favicon')
+			img = $('<img />').addClass('favicon')
 				    .attr({'src': json['favicon']})
 				    .prependTo(atag);
+
+			return img;
 		},
 	});
 

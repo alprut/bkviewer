@@ -19,24 +19,22 @@ return this.each(function() {
 
 /* Generic functions */
 
-	function favicon_uri_for(uri) {
-		var result = "";
+	function replace_favicon(uri, img_tag) {
+		PlacesUtils.favicons.getFaviconDataForPage(
+			PlacesUtils._uri(uri),
+			function(aURI, aDatalen, aData, aMimeType) {
+				var str;
 
-		try {
-			var util = PlacesUtils.favicons;
-			var fav_data = util.getFaviconForPage(
-							PlacesUtils._uri(uri));
-			var mime = {};
-			var len = {};
-			var icon = util.getFaviconData(fav_data, mime, len);
-			result = "data:" + mime.value + ";base64," +
-				 btoa(String.fromCharCode.apply(null, icon));
-		} catch(e) {
-			result =
-			      "chrome://mozapps/skin/places/defaultFavicon.png";
-		}
+				if (aURI == null) {
+					return;
+				}
 
-		return result;
+				str = "data:" + aMimeType + ";base64,"
+				+ btoa(String.fromCharCode.apply(null, aData));
+
+				img_tag.attr("src", str);
+			}
+		);
 	}
 
 	function bookmark_json() {
@@ -67,6 +65,7 @@ return this.each(function() {
 		var is_empty = true;
 		var category_set = new Array();
 		var item_set = new Array();
+		var favicon_tag;
 
 		if (category['type'] != "text/x-moz-place-container")
 			return;
@@ -99,9 +98,10 @@ return this.each(function() {
 
 		for (i = 0; i < item_set.length; i++) {
 			item = item_set[i];
-			item['favicon'] = favicon_uri_for(item['uri']);
+			item['favicon'] = "chrome://mozapps/skin/places/defaultFavicon.png";
 
-			opts.add_item_view(item, target, context);
+			favicon_tag = opts.add_item_view(item, target, context);
+			replace_favicon(item['uri'], favicon_tag);
 		}
 
 		if (! category_is_first) {
