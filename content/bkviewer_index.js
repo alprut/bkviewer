@@ -40,7 +40,7 @@ return this.each(function() {
 		},
 
 		add_item_view: function(json, target, context) {
-			var box, cur_box = context.cur_box, atag;
+			var box, cur_box = context.cur_box, atag, img;
 
 			box = $('<li />').addClass('bk-item')
 					 .appendTo(cur_box);
@@ -50,13 +50,15 @@ return this.each(function() {
 				  .addClass('bk-item')
 				  .appendTo(box);
 
-			$('<img />').addClass('favicon')
-				    .attr({'src': json['favicon']})
-				    .prependTo(atag);
+			img = $('<img />').addClass('favicon')
+					  .attr({'src': json['favicon']})
+					  .prependTo(atag);
 
 			context.cur_box = add_box(target, cur_box, box,
 						  context.prev);
 			context.prev = box;
+
+			return img;
 		}
 	});
 
