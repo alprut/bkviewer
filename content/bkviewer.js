@@ -1,12 +1,17 @@
 Components.utils.import("resource://gre/modules/PlacesUtils.jsm");
+Components.utils.import("resource://gre/modules/PlacesBackups.jsm");
+Components.utils.import("resource://gre/modules/Task.jsm");
 
 (function($) {
 $.fn.show_bookmarks = function(options) {
 return this.each(function() {
 	var t = $(this);
-	var bookmarks = bookmark_json();
 
-	add_view(t, bookmarks, options);
+	Task.spawn(function*() {
+		let [bookmarks, count] = yield PlacesBackups.getBookmarksTree();
+
+		add_view(t, bookmarks['children'][0], options);
+	});
 
 	function init(target, context) {
 	}
@@ -38,25 +43,6 @@ return this.each(function() {
 				img_tag.attr("src", str);
 			}
 		);
-	}
-
-	function bookmark_json() {
-		var id = PlacesUtils.bookmarksMenuFolderId,
-		parentNode = PlacesUtils.getFolderContents(id).root,
-		result;
-
-		var writer = {
-			value : '',
-			write : function(aData, aLen) {
-				this.value += aData;
-			}
-		};
-
-		PlacesUtils.serializeNodeAsJSONToOutputStream(parentNode,
-							      writer, true,
-							      true, []);
-
-		return JSON.parse(writer.value);
 	}
 
 	function make_category_view(target, category, context, opts,
