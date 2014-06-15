@@ -59,19 +59,21 @@ return this.each(function() {
 			context.prev = box;
 
 			return img;
-		}
-	});
+		},
 
-	columns = $('.bk-box');
+		fini: function(target, context) {
+			columns = $('.bk-box');
 
-	columns.css({"height": 500});
-	t.addClass('bv-clearfix');
+			columns.css({"height": 500});
+			target.addClass('bv-clearfix');
 
-	$(window).resize(function() {
-				equal_spacing(t, columns);
+			$(window).resize(function() {
+						equal_spacing(t, columns);
 			 });
 
-	equal_spacing(t, columns);
+			equal_spacing(t, columns);
+		}
+	});
 
 	function equal_spacing(box, contents) {
 		var box_width, item_width, items_num, margin, first_margin;

@@ -143,23 +143,25 @@ return this.each(function() {
 
 			return img;
 		},
-	});
 
-	t.children().children('ul').addClass('bv-clearfix')
-				   .each(function() {
-		var ul = $(this);
-		align_width(ul.children());
-		equal_spacing(ul, ul.children());
-
-		$(window).resize(function() {
-			/* This condition avoids items from
-			 * setting their width to 0.
-			 */
-			if (ul.css('display') != 'none')
+		fini: function(target, context) {
+			target.children().children('ul').addClass('bv-clearfix')
+						   .each(function() {
+				var ul = $(this);
+				align_width(ul.children());
 				equal_spacing(ul, ul.children());
-		});
-	});
 
-	hide_categories(t, hiddens);
+				$(window).resize(function() {
+					/* This condition avoids items from
+					 * setting their width to 0.
+					 */
+					if (ul.css('display') != 'none')
+						equal_spacing(ul, ul.children());
+				});
+			});
+
+			hide_categories(target, hiddens);
+		}
+	});
 
 })}} (jQuery));

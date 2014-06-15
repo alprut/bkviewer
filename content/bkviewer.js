@@ -17,6 +17,9 @@ return this.each(function() {
 	function add_item_view(json, target, context) {
 	}
 
+	function fini(target, context) {
+	}
+
 /* Generic functions */
 
 	function replace_favicon(uri, img_tag) {
@@ -126,6 +129,8 @@ return this.each(function() {
 		opts.init(target, context);
 
 		make_category_view(target, json, context, opts, true);
+
+		opts.fini(target, context);
 	}
 })}} (jQuery));
 
